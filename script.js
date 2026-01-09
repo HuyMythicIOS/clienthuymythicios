@@ -15,3 +15,18 @@ menuOverlay.onclick = (e) => {
     menuOverlay.classList.remove("active");
   }
 };
+
+/* SCROLL REVEAL */
+const reveals = document.querySelectorAll(".reveal");
+
+function onScroll() {
+  const h = window.innerHeight;
+  reveals.forEach(el => {
+    if (el.getBoundingClientRect().top < h - 80) {
+      el.classList.add("active");
+    }
+  });
+}
+
+window.addEventListener("scroll", onScroll);
+window.addEventListener("load", onScroll);
