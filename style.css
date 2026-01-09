@@ -244,48 +244,51 @@ footer {
   margin: 30px 0;
 }
 
-/* ===== HERO BASED (COMPACT – FIX DỨT ĐIỂM) ===== */
+/* ===== HERO GIỚI THIỆU ===== */
 .hero-based {
-  margin: 0 !important;
-  margin-top: 70px !important;     /* chừa đúng chiều cao menu */
-  padding: 18px 16px !important;   /* ép sát trên & dưới */
-  min-height: unset !important;    /* bỏ full màn */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+  margin: 90px auto 20px;
   text-align: center;
+  position: relative;
+  z-index: 10;
 }
 
 /* Tiêu đề */
 .hero-based-title {
-  margin: 0 0 8px 0 !important;
-  font-size: clamp(28px, 6vw, 42px);
-  font-weight: 700;
+  margin-bottom: 10px;
+  font-size: clamp(26px, 6vw, 38px);
+  color: #2fffd0;
 }
 
 /* Mô tả */
 .hero-based-desc {
-  margin: 0 0 14px 0 !important;
-  line-height: 1.4;
+  margin-bottom: 18px;
   opacity: 0.85;
 }
 
-/* Nút */
-.hero-based-btn {
-  margin: 0 !important;
-  padding: 14px 42px;
-  border-radius: 16px;
+/* ===== NÚT TẢI XUỐNG ===== */
+.download-btn {
+  display: inline-block;
+  padding: 14px 44px;
+  border-radius: 18px;
   background: linear-gradient(135deg, #7fffd4, #2fffd0);
-  color: #002b25;
-  font-size: 16px;
+  color: #00332b;
   font-weight: 700;
-  border: none;
+  text-decoration: none;
+
+  position: relative;
+  z-index: 50;
+  pointer-events: auto;
   cursor: pointer;
-  box-shadow: 0 0 30px rgba(127,255,212,0.45);
+
+  box-shadow: 0 0 28px rgba(127,255,212,0.45);
 }
 
-/* Không cho reveal đẩy khoảng cách */
-.hero-based.reveal {
-  transform: none !important;
+/* nhấn */
+.download-btn:active {
+  transform: scale(0.96);
+}
+
+/* nền KHÔNG được chặn click */
+.bg-animation {
+  pointer-events: none;
 }
