@@ -1,130 +1,126 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <title>HuyMythicIOS | Roblox VN</title>
-
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1, viewport-fit=cover">
-
+  <meta charset="UTF-8">
+  <title>HuyMythicIOS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- NAVBAR -->
-  <header class="navbar">
-    <div class="nav-left">HuyMythicIOS</div>
-    <div class="nav-right">
-      <button class="menu-btn" id="openMenu">☰</button>
-    </div>
-  </header>
+<!-- MENU BAR CỐ ĐỊNH -->
+<div class="top-menu">
+  <span class="menu-title">HuyMythicIOS</span>
+  <button class="menu-icon" id="openMenu">☰</button>
+</div>
 
-  <!-- MENU OVERLAY -->
-  <div class="menu-overlay" id="menuOverlay">
-    <div class="menu-panel">
-      <button class="close-btn" id="closeMenu">✕</button>
-      <h3>Menu</h3>
+<!-- OVERLAY MENU -->
+<div class="menu-overlay" id="menuOverlay">
+  <div class="menu-box">
+    <button class="close-menu" id="closeMenu">✕</button>
+    <h2>Menu</h2>
+    <a href="#" class="menu-link">Client iOS VNG</a>
+    <a href="#" class="menu-link">Discord</a>
+  </div>
+</div>
 
-      <!-- CHƯA GẮN LINK -->
-      <button class="menu-item">Client iOS VNG</button>
-      <button class="menu-item">Discord</button>
+<!-- BACKGROUND -->
+<div class="bg-animation"></div>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+
+  <!-- HERO -->
+  <h1>HuyMythicIOS</h1>
+  <p class="tagline">Roblox VN Hack Developer</p>
+
+  <!-- ABOUT -->
+  <div class="section">
+    <h2>👤 Tôi là ai?</h2>
+    <p>
+      Tôi là <b>HuyMythicIOS</b>, người phát triển và chia sẻ các bản hack Roblox VN
+      cho iOS & PC, hướng tới sự ổn định, dễ dùng và an toàn cho người Việt.
+    </p>
+  </div>
+
+  <!-- SECURITY -->
+  <div class="section">
+    <h2>🛡️ Độ an toàn</h2>
+    <p>
+      Tất cả file được kiểm tra trước khi chia sẻ.
+      Không chèn virus, không đánh cắp tài khoản hay dữ liệu cá nhân.
+    </p>
+  </div>
+
+  <!-- TRUST -->
+  <div class="section">
+    <h2>✅ Vì sao nên tin dùng?</h2>
+    <ul>
+      <li>✔ File rõ nguồn gốc</li>
+      <li>✔ Cập nhật thường xuyên</li>
+      <li>✔ Cộng đồng Discord chính chủ</li>
+      <li>✔ Hỗ trợ người dùng Việt</li>
+    </ul>
+  </div>
+
+  <!-- STATS (1 KHUNG) -->
+  <div class="section stats-box">
+    <div class="stats-row">
+      <div class="stat-item">
+        <h3>3 triệu+</h3>
+        <p>Lượt tải xuống</p>
+      </div>
+
+      <div class="stat-item">
+        <h3>25 nghìn+</h3>
+        <p>Thành viên Discord</p>
+      </div>
+
+      <div class="stat-item">
+        <h3>2 năm</h3>
+        <p>Năm ra mắt</p>
+      </div>
     </div>
   </div>
 
-  <!-- BACKGROUND -->
-  <div class="bg-animation"></div>
-
-  <!-- SAFE AREA -->
-  <div class="safe-area">
-    <div class="container">
-
-      <h1 class="reveal">HuyMythicIOS</h1>
-      <p class="tagline reveal">Roblox VN Hack Developer</p>
-
-      <div class="section reveal">
-        <h2>👤 Tôi là ai?</h2>
-        <p>
-          Tôi là <b>HuyMythicIOS</b>, người phát triển và chia sẻ các bản hack
-          Roblox VN cho iOS & PC, hướng tới sự ổn định, dễ dùng và an toàn.
-        </p>
-      </div>
-
-      <div class="section reveal">
-        <h2>🛡️ Độ an toàn</h2>
-        <p>
-          File được kiểm tra trước khi chia sẻ, không chèn virus,
-          không đánh cắp tài khoản hay dữ liệu cá nhân.
-        </p>
-      </div>
-
-      <div class="section reveal">
-        <h2>✅ Vì sao nên tin dùng?</h2>
-        <ul>
-          <li>✔ File rõ nguồn gốc</li>
-          <li>✔ Update thường xuyên</li>
-          <li>✔ Có Discord chính chủ</li>
-          <li>✔ Hỗ trợ người dùng Việt</li>
-        </ul>
-      </div>
-
-      <!-- STATS -->
-      <section class="stats-section reveal">
-        <div class="stat">
-          <h3 class="counter" data-target="3000000">0</h3>
-          <p>Lượt tải xuống+</p>
-        </div>
-
-        <div class="stat">
-          <h3 class="counter" data-target="25000">0</h3>
-          <p>Thành viên Discord+</p>
-        </div>
-
-        <div class="stat">
-          <h3 class="counter" data-target="2">0</h3>
-          <p>Năm ra mắt</p>
-        </div>
-      </section>
-
-      <!-- FEATURES -->
-      <section class="features">
-        <div class="feature-card reveal">
-          <h4>🚀 Trải nghiệm cao cấp</h4>
-          <p>Ổn định, dễ dùng, tối ưu cho Roblox VN.</p>
-        </div>
-
-        <div class="feature-card reveal">
-          <h4>⚡ Cập nhật nhanh</h4>
-          <p>Theo sát các bản update Roblox mới.</p>
-        </div>
-
-        <div class="feature-card reveal">
-          <h4>🛡️ An toàn</h4>
-          <p>Không virus, không đánh cắp dữ liệu.</p>
-        </div>
-
-        <div class="feature-card reveal">
-          <h4>💬 Hỗ trợ 24/7</h4>
-          <p>Discord chính chủ HuyMythicIOS.</p>
-        </div>
-
-        <div class="feature-card reveal">
-          <h4>🆓 Miễn phí</h4>
-          <p>Chia sẻ miễn phí, không ép trả phí.</p>
-        </div>
-
-        <div class="feature-card reveal">
-          <h4>🔥 Hiệu suất cao</h4>
-          <p>Hạn chế crash, chạy mượt.</p>
-        </div>
-      </section>
-
-      <footer class="reveal">
-        © 2026 HuyMythicIOS | Roblox VN
-      </footer>
-
-    </div>
+  <!-- FEATURES (GIỐNG BAN ĐẦU – KHUNG ĐƠN) -->
+  <div class="section">
+    <h2>🚀 Trải nghiệm cao cấp</h2>
+    <p>Ổn định, dễ dùng, tối ưu cho Roblox VN.</p>
   </div>
 
-  <script src="script.js"></script>
+  <div class="section">
+    <h2>⚡ Cập nhật nhanh</h2>
+    <p>Theo sát các bản update Roblox mới nhất.</p>
+  </div>
+
+  <div class="section">
+    <h2>🛡️ An toàn</h2>
+    <p>Không virus, không đánh cắp dữ liệu người dùng.</p>
+  </div>
+
+  <div class="section">
+    <h2>💬 Hỗ trợ 24/7</h2>
+    <p>Discord chính chủ HuyMythicIOS, hỗ trợ nhanh.</p>
+  </div>
+
+  <div class="section">
+    <h2>🆓 Miễn phí</h2>
+    <p>Chia sẻ miễn phí, không ép buộc trả phí.</p>
+  </div>
+
+  <div class="section">
+    <h2>🔥 Hiệu suất cao</h2>
+    <p>Hạn chế crash, chạy mượt trên iOS & PC.</p>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    © HuyMythicIOS
+  </footer>
+
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
