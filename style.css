@@ -1,23 +1,48 @@
+/* =====================
+   RESET + BASE
+===================== */
 * {
   box-sizing: border-box;
 }
 
-/* SAFE AREA */
-.safe-area {
-  padding-top: env(safe-area-inset-top);
-  padding-bottom: env(safe-area-inset-bottom);
-}
-
-/* BODY */
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
   background: #050b10;
   color: #e6faff;
   overflow-x: hidden;
 }
 
-/* NAVBAR */
+/* SAFE AREA (iPhone notch) */
+.safe-area {
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* =====================
+   BACKGROUND NEON
+===================== */
+.bg-animation {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(0,255,224,0.18), transparent 45%),
+    radial-gradient(circle at 80% 60%, rgba(0,180,255,0.15), transparent 45%),
+    radial-gradient(circle at 50% 90%, rgba(0,255,224,0.1), transparent 50%);
+  animation: floatBg 22s infinite ease-in-out;
+}
+
+@keyframes floatBg {
+  0%   { transform: translate(0, 0); }
+  50%  { transform: translate(-20px, -30px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* =====================
+   NAVBAR
+===================== */
 .navbar {
   position: fixed;
   top: 0;
@@ -26,29 +51,32 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(5, 15, 20, 0.7);
+  background: rgba(6, 16, 22, 0.7);
   backdrop-filter: blur(10px);
   z-index: 100;
 }
 
 .nav-left {
-  font-weight: bold;
+  font-weight: 700;
   color: #00ffe0;
+  font-size: 16px;
 }
 
 .menu-btn {
   background: none;
   border: none;
-  font-size: 24px;
+  font-size: 26px;
   color: #00ffe0;
   cursor: pointer;
 }
 
-/* MENU OVERLAY */
+/* =====================
+   MENU OVERLAY
+===================== */
 .menu-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.65);
   backdrop-filter: blur(8px);
   display: none;
   justify-content: center;
@@ -62,16 +90,29 @@ body {
 
 .menu-panel {
   background: #0d1a22;
-  padding: 25px;
-  border-radius: 14px;
-  width: 80%;
-  max-width: 300px;
+  width: 85%;
+  max-width: 320px;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 0 30px rgba(0,255,224,0.15);
   animation: fadeUp 0.4s ease;
 }
 
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.menu-panel h3 {
+  margin-top: 0;
+  color: #8fdfff;
+  text-align: center;
 }
 
 .close-btn {
@@ -85,33 +126,20 @@ body {
 
 .menu-item {
   width: 100%;
-  margin-top: 15px;
-  padding: 12px;
+  margin-top: 16px;
+  padding: 14px;
+  border-radius: 999px;
   background: #00ffe0;
+  color: #001314;
   border: none;
-  border-radius: 8px;
-  font-weight: bold;
+  font-weight: 700;
+  font-size: 14px;
   cursor: pointer;
 }
 
-/* BACKGROUND */
-.bg-animation {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  background:
-    radial-gradient(circle at 20% 30%, rgba(0,255,224,0.15), transparent 40%),
-    radial-gradient(circle at 80% 60%, rgba(0,180,255,0.12), transparent 40%);
-  animation: floatBg 20s infinite ease-in-out;
-}
-
-@keyframes floatBg {
-  0% { transform: translate(0,0); }
-  50% { transform: translate(-20px,-30px); }
-  100% { transform: translate(0,0); }
-}
-
-/* CONTENT */
+/* =====================
+   MAIN CONTENT
+===================== */
 .container {
   max-width: 640px;
   margin: 100px auto 0;
@@ -121,48 +149,120 @@ body {
 h1 {
   text-align: center;
   color: #00ffe0;
+  font-size: 34px;
+  margin-bottom: 6px;
+  text-shadow: 0 0 16px rgba(0,255,224,0.4);
 }
 
 .tagline {
   text-align: center;
-  color: #8fdfff;
-  margin-bottom: 30px;
+  color: #9fdfff;
+  margin-bottom: 32px;
+  font-size: 15px;
 }
 
+/* =====================
+   SECTIONS (CARD)
+===================== */
 .section {
-  background: rgba(10, 20, 25, 0.85);
-  padding: 16px;
+  background: rgba(12, 22, 28, 0.88);
   border-left: 4px solid #00ffe0;
-  margin-bottom: 16px;
-  border-radius: 8px;
+  border-radius: 14px;
+  padding: 18px;
+  margin-bottom: 18px;
+  box-shadow: 0 0 20px rgba(0,255,224,0.06);
 }
 
-.stats-section {
-  text-align: center;
-  margin: 60px 0;
-}
-
-.stat h3 {
-  font-size: 36px;
+.section h2 {
+  margin-top: 0;
   color: #00ffe0;
+  font-size: 18px;
 }
 
-.features {
+.section p,
+.section li {
+  font-size: 14px;
+  color: #d6f4ff;
+}
+
+.section ul {
+  padding-left: 18px;
+}
+
+/* =====================
+   STATS
+===================== */
+.stats-section {
+  margin: 60px 0;
   display: grid;
   gap: 16px;
 }
 
-.feature-card {
-  background: rgba(15, 25, 35, 0.85);
-  padding: 16px;
-  border-radius: 10px;
+.stat {
+  background: rgba(12, 22, 28, 0.9);
+  border-left: 4px solid #00ffe0;
+  padding: 18px;
+  border-radius: 14px;
 }
 
-/* SCROLL ANIMATION */
+.stat h3 {
+  margin: 0;
+  font-size: 28px;
+  color: #00ffe0;
+  text-shadow: 0 0 14px rgba(0,255,224,0.35);
+}
+
+.stat p {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #bdefff;
+}
+
+/* =====================
+   FEATURES
+===================== */
+.features {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 50px;
+}
+
+.feature-card {
+  background: rgba(15, 25, 35, 0.9);
+  border: 1px solid rgba(0,255,224,0.18);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 0 20px rgba(0,255,224,0.08);
+}
+
+.feature-card h4 {
+  margin: 0 0 8px;
+  color: #9fdfff;
+  font-size: 16px;
+}
+
+.feature-card p {
+  font-size: 14px;
+  color: #cfefff;
+}
+
+/* =====================
+   FOOTER
+===================== */
+footer {
+  text-align: center;
+  font-size: 12px;
+  color: #7fbcd6;
+  margin-bottom: 30px;
+}
+
+/* =====================
+   SCROLL ANIMATION
+===================== */
 .reveal {
   opacity: 0;
-  transform: translateY(20px);
-  transition: 0.8s ease;
+  transform: translateY(18px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
 .reveal.active {
@@ -170,9 +270,11 @@ h1 {
   transform: translateY(0);
 }
 
-footer {
-  text-align: center;
-  margin: 30px 0;
-  font-size: 12px;
-  color: #7fbcd6;
+/* =====================
+   DESKTOP
+===================== */
+@media (min-width: 768px) {
+  .features {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
