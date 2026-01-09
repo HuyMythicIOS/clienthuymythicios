@@ -1,86 +1,51 @@
-/* =====================
-   RESET + BASE
-===================== */
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background: #050b10;
   color: #e6faff;
-  overflow-x: hidden;
 }
 
-/* SAFE AREA (iPhone notch) */
-.safe-area {
-  padding-top: env(safe-area-inset-top);
-  padding-bottom: env(safe-area-inset-bottom);
-}
-
-/* =====================
-   BACKGROUND NEON
-===================== */
-.bg-animation {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  background:
-    radial-gradient(circle at 20% 30%, rgba(0,255,224,0.18), transparent 45%),
-    radial-gradient(circle at 80% 60%, rgba(0,180,255,0.15), transparent 45%),
-    radial-gradient(circle at 50% 90%, rgba(0,255,224,0.1), transparent 50%);
-  animation: floatBg 22s infinite ease-in-out;
-}
-
-@keyframes floatBg {
-  0%   { transform: translate(0, 0); }
-  50%  { transform: translate(-20px, -30px); }
-  100% { transform: translate(0, 0); }
-}
-
-/* =====================
-   NAVBAR
-===================== */
-.navbar {
+/* MENU BAR */
+.top-menu {
   position: fixed;
   top: 0;
   width: 100%;
-  padding: 14px 20px;
+  height: 56px;
+  background: rgba(5, 15, 20, 0.9);
+  backdrop-filter: blur(10px);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(6, 16, 22, 0.7);
-  backdrop-filter: blur(10px);
+  padding: 0 16px;
   z-index: 100;
 }
 
-.nav-left {
-  font-weight: 700;
+.menu-title {
   color: #00ffe0;
+  font-weight: 700;
   font-size: 16px;
 }
 
-.menu-btn {
+.menu-icon {
+  font-size: 26px;
   background: none;
   border: none;
-  font-size: 26px;
   color: #00ffe0;
   cursor: pointer;
 }
 
-/* =====================
-   MENU OVERLAY
-===================== */
+/* OVERLAY */
 .menu-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.65);
-  backdrop-filter: blur(8px);
+  background: rgba(0,0,0,0.7);
   display: none;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   z-index: 200;
 }
 
@@ -88,193 +53,97 @@ body {
   display: flex;
 }
 
-.menu-panel {
+.menu-box {
   background: #0d1a22;
-  width: 85%;
-  max-width: 320px;
+  width: 80%;
+  max-width: 300px;
   padding: 24px;
   border-radius: 16px;
-  box-shadow: 0 0 30px rgba(0,255,224,0.15);
-  animation: fadeUp 0.4s ease;
-}
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.menu-panel h3 {
-  margin-top: 0;
-  color: #8fdfff;
   text-align: center;
 }
 
-.close-btn {
+.close-menu {
+  position: absolute;
+  right: 20px;
+  top: 20px;
   background: none;
   border: none;
+  font-size: 22px;
   color: #fff;
-  font-size: 20px;
-  float: right;
   cursor: pointer;
 }
 
-.menu-item {
-  width: 100%;
+.menu-box h2 {
+  color: #00ffe0;
+}
+
+.menu-link {
+  display: block;
   margin-top: 16px;
-  padding: 14px;
+  padding: 12px;
   border-radius: 999px;
   background: #00ffe0;
   color: #001314;
-  border: none;
   font-weight: 700;
-  font-size: 14px;
-  cursor: pointer;
+  text-decoration: none;
 }
 
-/* =====================
-   MAIN CONTENT
-===================== */
+/* BACKGROUND */
+.bg-animation {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(0,255,224,0.18), transparent 40%),
+    radial-gradient(circle at 80% 60%, rgba(0,180,255,0.15), transparent 40%);
+}
+
+/* CONTENT */
 .container {
   max-width: 640px;
-  margin: 100px auto 0;
-  padding: 24px;
+  margin: 80px auto 0;
+  padding: 20px;
 }
 
 h1 {
   text-align: center;
   color: #00ffe0;
   font-size: 34px;
-  margin-bottom: 6px;
-  text-shadow: 0 0 16px rgba(0,255,224,0.4);
 }
 
 .tagline {
   text-align: center;
   color: #9fdfff;
-  margin-bottom: 32px;
-  font-size: 15px;
+  margin-bottom: 30px;
 }
 
-/* =====================
-   SECTIONS (CARD)
-===================== */
 .section {
-  background: rgba(12, 22, 28, 0.88);
+  background: rgba(12, 22, 28, 0.9);
   border-left: 4px solid #00ffe0;
   border-radius: 14px;
   padding: 18px;
   margin-bottom: 18px;
-  box-shadow: 0 0 20px rgba(0,255,224,0.06);
 }
 
 .section h2 {
   margin-top: 0;
   color: #00ffe0;
-  font-size: 18px;
 }
 
-.section p,
-.section li {
-  font-size: 14px;
-  color: #d6f4ff;
+.stats {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
 }
 
-.section ul {
-  padding-left: 18px;
-}
-
-/* =====================
-   STATS
-===================== */
-.stats-section {
-  margin: 60px 0;
-  display: grid;
-  gap: 16px;
-}
-
-.stat {
-  background: rgba(12, 22, 28, 0.9);
-  border-left: 4px solid #00ffe0;
-  padding: 18px;
-  border-radius: 14px;
-}
-
-.stat h3 {
-  margin: 0;
-  font-size: 28px;
+.stats h3 {
   color: #00ffe0;
-  text-shadow: 0 0 14px rgba(0,255,224,0.35);
+  margin: 0;
 }
 
-.stat p {
-  margin-top: 6px;
-  font-size: 14px;
-  color: #bdefff;
-}
-
-/* =====================
-   FEATURES
-===================== */
-.features {
-  display: grid;
-  gap: 16px;
-  margin-bottom: 50px;
-}
-
-.feature-card {
-  background: rgba(15, 25, 35, 0.9);
-  border: 1px solid rgba(0,255,224,0.18);
-  border-radius: 16px;
-  padding: 18px;
-  box-shadow: 0 0 20px rgba(0,255,224,0.08);
-}
-
-.feature-card h4 {
-  margin: 0 0 8px;
-  color: #9fdfff;
-  font-size: 16px;
-}
-
-.feature-card p {
-  font-size: 14px;
-  color: #cfefff;
-}
-
-/* =====================
-   FOOTER
-===================== */
 footer {
   text-align: center;
   font-size: 12px;
   color: #7fbcd6;
-  margin-bottom: 30px;
-}
-
-/* =====================
-   SCROLL ANIMATION
-===================== */
-.reveal {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* =====================
-   DESKTOP
-===================== */
-@media (min-width: 768px) {
-  .features {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  margin: 30px 0;
 }
