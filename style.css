@@ -1,0 +1,127 @@
+/* RESET */
+* {
+  box-sizing: border-box;
+}
+
+/* SAFE AREA – iPhone tai thỏ */
+.safe-area {
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+/* BODY */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #050b10;
+  color: #e6faff;
+  overflow-x: hidden;
+}
+
+/* NỀN NEON TRÔI */
+.bg-animation {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(0,255,224,0.15), transparent 40%),
+    radial-gradient(circle at 80% 60%, rgba(0,180,255,0.12), transparent 40%),
+    radial-gradient(circle at 50% 90%, rgba(0,255,224,0.1), transparent 45%);
+  animation: floatBg 22s infinite ease-in-out;
+}
+
+@keyframes floatBg {
+  0%   { transform: translate(0, 0); }
+  50%  { transform: translate(-20px, -30px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* CONTAINER */
+.container {
+  max-width: 640px;
+  margin: auto;
+  padding: 24px;
+}
+
+/* TEXT */
+h1 {
+  text-align: center;
+  color: #00ffe0;
+  margin-bottom: 5px;
+  text-shadow: 0 0 12px #00ffe055;
+}
+
+.tagline {
+  text-align: center;
+  color: #8fdfff;
+  margin-bottom: 32px;
+}
+
+/* SECTION */
+.section {
+  background: rgba(10, 20, 25, 0.85);
+  border-left: 4px solid #00ffe0;
+  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  backdrop-filter: blur(4px);
+}
+
+.section h2 {
+  margin-top: 0;
+  color: #00ffe0;
+}
+
+.section p,
+.section li {
+  font-size: 14px;
+  color: #cfefff;
+}
+
+ul {
+  padding-left: 18px;
+}
+
+/* WARNING */
+.warning {
+  border-left-color: #ffb74d;
+}
+
+/* DISCORD BUTTON */
+.discord-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 12px 18px;
+  background: #5865F2;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: bold;
+  box-shadow: 0 0 12px #5865f255;
+}
+
+.discord-btn:hover {
+  background: #4752c4;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  font-size: 12px;
+  color: #7fbcd6;
+  margin-top: 20px;
+}
+
+/* SCROLL ANIMATION */
+.reveal {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: all 0.9s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
