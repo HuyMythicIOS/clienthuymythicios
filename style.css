@@ -246,40 +246,26 @@ footer {
 
 /* ===== HERO BASED (CENTER + LIGHT BLUE BUTTON) ===== */
 .hero-based {
-  min-height: calc(100vh - 80px); /* trừ chiều cao menu */
-  padding: 60px 20px 40px;        /* giảm padding */
+  min-height: auto;           /* bỏ full màn */
+  padding: 40px 20px 20px;    /* giảm trên & dưới */
+  margin-top: 80px;           /* cách menu vừa đủ */
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;    /* không đẩy xa nữa */
+  justify-content: flex-start;
   text-align: center;
 }
 
 .hero-based-title {
-  font-size: clamp(30px, 6vw, 46px);
-  font-weight: 700;
-  color: #e8fffb;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 
 .hero-based-desc {
-  font-size: 15px;
-  line-height: 1.6;
-  color: rgba(255,255,255,0.75);
-  margin-bottom: 36px;
+  margin-bottom: 18px;
 }
 
 .hero-based-btn {
-  padding: 14px 42px;
-  border-radius: 16px;
-  background: linear-gradient(135deg, #7fffd4, #2fffd0);
-  color: #002b25;
-  font-size: 16px;
-  font-weight: 700;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 0 30px rgba(127,255,212,0.45);
-  transition: transform .2s ease, box-shadow .2s ease;
+  margin-bottom: 10px;
 }
 
 .hero-based-btn:hover {
