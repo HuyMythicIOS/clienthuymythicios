@@ -7,12 +7,9 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background: #050b10;
   color: #e6faff;
-  overflow-x: hidden;
 }
 
-/* =====================
-   TOP MENU
-===================== */
+/* ===== MENU ===== */
 .top-menu {
   position: fixed;
   top: 0;
@@ -30,7 +27,6 @@ body {
 .menu-title {
   color: #00ffe0;
   font-weight: 700;
-  font-size: 16px;
 }
 
 .menu-icon {
@@ -38,61 +34,9 @@ body {
   background: none;
   border: none;
   color: #00ffe0;
-  cursor: pointer;
 }
 
-/* =====================
-   MENU OVERLAY
-===================== */
-.menu-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.7);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 200;
-}
-
-.menu-overlay.active {
-  display: flex;
-}
-
-.menu-box {
-  background: #0d1a22;
-  width: 80%;
-  max-width: 320px;
-  padding: 24px;
-  border-radius: 16px;
-  text-align: center;
-  position: relative;
-}
-
-.close-menu {
-  position: absolute;
-  right: 16px;
-  top: 14px;
-  background: none;
-  border: none;
-  font-size: 22px;
-  color: #fff;
-  cursor: pointer;
-}
-
-.menu-link {
-  display: block;
-  margin-top: 16px;
-  padding: 12px;
-  border-radius: 999px;
-  background: #00ffe0;
-  color: #001314;
-  font-weight: 700;
-  text-decoration: none;
-}
-
-/* =====================
-   BACKGROUND ANIMATION
-===================== */
+/* ===== BG ===== */
 .bg-animation {
   position: fixed;
   inset: -25%;
@@ -100,136 +44,126 @@ body {
   pointer-events: none;
   background:
     radial-gradient(circle at 20% 30%, rgba(0,255,224,0.18), transparent 45%),
-    radial-gradient(circle at 80% 60%, rgba(0,180,255,0.15), transparent 45%),
-    radial-gradient(circle at 50% 90%, rgba(0,255,224,0.1), transparent 50%);
-  background-size: 140% 140%;
-  animation: bgMoveFast 8s ease-in-out infinite;
+    radial-gradient(circle at 80% 60%, rgba(0,180,255,0.15), transparent 45%);
+  animation: bgMove 8s ease-in-out infinite;
 }
 
-@keyframes bgMoveFast {
-  0%   { background-position: 50% 50%; }
-  50%  { background-position: 60% 40%; }
-  100% { background-position: 50% 50%; }
+@keyframes bgMove {
+  0% {background-position:50% 50%}
+  50% {background-position:60% 40%}
+  100% {background-position:50% 50%}
 }
 
-/* =====================
-   CONTENT – FIX DỨT ĐIỂM
-===================== */
+/* ===== CONTENT ===== */
 .container {
-  display: block;
-  min-height: unset;
-  padding-top: 72px; /* 56px menu + đệm */
+  padding: 90px 16px 20px;
+}
+
+.center-title {
   text-align: center;
-}
-
-/* TIÊU ĐỀ CHÍNH */
-.container > h1 {
-  margin: 12px 0 6px;
-  font-size: clamp(28px, 6vw, 40px);
   color: #00ffe0;
+  font-size: 34px;
 }
 
-/* TAGLINE */
-.container > .tagline {
-  margin: 0;
+.center {
+  text-align: center;
   opacity: 0.85;
-  font-size: 14px;
 }
 
-/* =====================
-   SECTIONS (CARD)
-===================== */
-.section {
+/* ===== CLIENT ===== */
+.client-title {
+  margin: 30px 0 20px;
+  text-align: center;
+  color: #2fffd0;
+}
+
+.client-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.client-card {
+  display: flex;
+  gap: 14px;
   background: rgba(12,22,28,0.9);
-  border-left: 4px solid #00ffe0;
+  padding: 14px;
   border-radius: 14px;
-  padding: 18px;
-  margin: 20px auto;
-  max-width: 420px;
-  text-align: left;
+  align-items: center;
 }
 
-.section h2 {
-  margin-top: 0;
-  color: #00ffe0;
-  font-size: 18px;
+.client-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 12px;
+  object-fit: cover;
 }
 
-.section p,
-.section li {
-  font-size: 14px;
-  color: #d6f4ff;
+.client-info h3 {
+  margin: 0 0 8px;
 }
 
-.section ul {
-  padding-left: 18px;
-}
-
-/* =====================
-   DISCORD BUTTON
-===================== */
-.discord-btn {
-  display: inline-block;
-  margin-top: 12px;
-  padding: 12px 20px;
+.client-download {
+  padding: 8px 16px;
   border-radius: 999px;
-  background: #5865F2;
-  color: #fff;
+  background: #7fffd4;
+  color: #00332b;
   font-weight: 700;
   text-decoration: none;
 }
 
-/* =====================
-   STATS
-===================== */
-.stats-box {
-  display: flex;
-  justify-content: center;
+.discord-card {
+  border: 1px solid #5865F2;
 }
 
-.stats-row {
-  width: 100%;
-  max-width: 360px;
+/* ===== COMMENTS ===== */
+.comment-title {
+  text-align: center;
+  margin: 30px 0 16px;
+}
+
+.comments {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 14px;
 }
 
-.stat-item h3 {
-  margin: 0;
-  font-size: 28px;
-  color: #00ffe0;
+.comment {
+  display: flex;
+  gap: 10px;
+  background: rgba(10,18,24,0.85);
+  padding: 12px;
+  border-radius: 12px;
 }
 
-.stat-item p {
+.avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+}
+
+.proof {
   margin-top: 6px;
-  font-size: 14px;
-  color: #ff3b3b;
-  text-shadow:
-    0 0 4px rgba(255,59,59,0.5),
-    0 0 10px rgba(255,59,59,0.25);
+  width: 100%;
+  border-radius: 10px;
 }
 
-/* =====================
-   SCROLL REVEAL
-===================== */
+/* ===== FOOTER ===== */
+.footer-mute {
+  margin: 30px 0;
+  text-align: center;
+  font-size: 12px;
+  opacity: 0.35;
+}
+
+/* ===== REVEAL ===== */
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transform: translateY(26px);
+  transition: 0.8s;
 }
 
 .reveal.active {
   opacity: 1;
-  transform: translateY(0);
-}
-
-/* =====================
-   FOOTER
-===================== */
-footer {
-  text-align: center;
-  font-size: 12px;
-  color: #7fbcd6;
-  margin: 30px 0;
+  transform: none;
 }
