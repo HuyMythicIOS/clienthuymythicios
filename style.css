@@ -154,3 +154,49 @@ footer {
   color: #7fbcd6;
   margin: 30px 0;
 }
+
+/* ===== FIX STATS CENTER (GIỐNG ẢNH) ===== */
+.stats-box {
+  display: flex;
+  justify-content: center; /* căn giữa khung */
+}
+
+.stats-row {
+  width: 100%;
+  max-width: 360px; /* đúng kích thước mobile */
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.stat-item {
+  text-align: left; /* chữ lệch trái như ảnh */
+}
+
+/* ===== RED NEON TEXT (NHẸ) ===== */
+.stat-item p {
+  color: #ff3b3b;
+  font-weight: 500;
+  text-shadow:
+    0 0 6px rgba(255, 59, 59, 0.45),
+    0 0 12px rgba(255, 59, 59, 0.25);
+}
+
+/* ===== BACKGROUND MOVE FAST + CENTER (IOS SAFE) ===== */
+.bg-animation {
+  inset: -25%;
+  background-size: 140% 140%;
+  animation: bgMoveFast 10s ease-in-out infinite;
+}
+
+@keyframes bgMoveFast {
+  0% {
+    background-position: 50% 50%;
+  }
+  50% {
+    background-position: 55% 45%;
+  }
+  100% {
+    background-position: 50% 50%;
+  }
+}
