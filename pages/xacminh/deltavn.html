@@ -178,12 +178,16 @@ h2{
 </div>
 
 <script>
-let yt=false, dc=false;
-
+/* ===== CONFIG ===== */
 const YT_LINK  = "https://www.youtube.com/@huygaming4569";
 const DC_LINK  = "https://discord.gg/XEaC68tVnv";
 const REDIRECT = "https://link4m.com/F0XN0TVX";
 
+/* ===== STATE ===== */
+let yt=false, dc=false;
+let adLoaded=false;
+
+/* ===== ELEMENTS ===== */
 const ytBtn=document.getElementById("ytBtn");
 const dcBtn=document.getElementById("dcBtn");
 const status=document.getElementById("status");
@@ -192,10 +196,23 @@ const timer=document.getElementById("timer");
 const success=document.getElementById("success");
 const openBtn=document.getElementById("openBtn");
 
+/* ===== LOAD ADSTERRA (CHỈ 1 LẦN) ===== */
+function loadAdsterra(){
+    if(adLoaded) return;
+    adLoaded=true;
+
+    const s=document.createElement("script");
+    s.src="https://pl28440493.effectivegatecpm.com/9a/0d/a5/9a0da502d2d4902c316c37b32232af77.js";
+    document.body.appendChild(s);
+}
+
+/* ===== BUTTON EVENTS ===== */
 ytBtn.onclick=()=>{
     if(yt) return;
     yt=true;
     ytBtn.classList.replace("locked","done");
+
+    loadAdsterra(); // bật ads
     window.open(YT_LINK,"_blank");
     check();
 };
@@ -204,10 +221,13 @@ dcBtn.onclick=()=>{
     if(dc) return;
     dc=true;
     dcBtn.classList.replace("locked","done");
+
+    loadAdsterra(); // bật ads
     window.open(DC_LINK,"_blank");
     check();
 };
 
+/* ===== CHECK UNLOCK ===== */
 function check(){
     if(yt && dc){
         status.style.display="none";
@@ -228,11 +248,12 @@ function check(){
         },1000);
     }
 }
+
+/* ===== REDIRECT ===== */
 openBtn.onclick=()=>{
     window.location.href = REDIRECT;
 };
 </script>
-<script src="https://pl28440493.effectivegatecpm.com/9a/0d/a5/9a0da502d2d4902c316c37b32232af77.js"></script>
 
 </body>
 </html>
