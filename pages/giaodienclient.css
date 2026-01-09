@@ -122,7 +122,9 @@ body {
    CONTENT
 ===================== */
 .container {
-  padding-top: 40px; /* giảm khoảng cách trên tổng thể */
+  min-height: unset !important;
+  display: block !important;
+  padding-top: 60px; /* khoảng cách hợp lý dưới menu */
 }
 
 .container h1 {
