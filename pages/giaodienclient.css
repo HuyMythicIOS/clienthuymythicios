@@ -122,22 +122,17 @@ body {
    CONTENT
 ===================== */
 .container {
-  max-width: 640px;
-  margin: 80px auto 0;
-  padding: 20px;
+  padding-top: 40px; /* giảm khoảng cách trên tổng thể */
 }
 
-h1 {
-  text-align: center;
-  color: #00ffe0;
-  font-size: 34px;
-  margin-bottom: 6px;
+.container h1 {
+  margin-top: 20px;   /* KÉO CHỮ HuyMythicIOS LÊN */
+  margin-bottom: 8px;
 }
 
-.tagline {
-  text-align: center;
-  color: #9fdfff;
-  margin-bottom: 30px;
+.container .tagline {
+  margin-top: 0;
+  opacity: 0.85;
 }
 
 /* =====================
