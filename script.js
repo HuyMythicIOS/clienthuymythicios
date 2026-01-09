@@ -6,38 +6,35 @@ const menuOverlay = document.getElementById("menuOverlay");
 openMenu.onclick = () => menuOverlay.classList.add("active");
 closeMenu.onclick = () => menuOverlay.classList.remove("active");
 
-/* SCROLL + COUNTER */
+/* REVEAL + COUNTER */
 const reveals = document.querySelectorAll(".reveal");
 const counters = document.querySelectorAll(".counter");
 let counterStarted = false;
 
-function formatNumber(value) {
-  if (value >= 1_000_000) {
-    return Math.floor(value / 1_000_000) + " triệu+";
-  }
-  if (value >= 1_000) {
-    return Math.floor(value / 1_000) + " nghìn+";
-  }
-  return value + "+";
-}
+function runCounter(counter) {
+  const target = Number(counter.dataset.target);
+  let current = 0;
+  const duration = 1200; // ms
+  const start = performance.now();
 
-function animateCounters() {
-  counters.forEach(counter => {
-    const target = Number(counter.dataset.target);
-    let current = 0;
-    const step = Math.max(1, Math.floor(target / 80));
+  function update(now) {
+    const progress = Math.min((now - start) / duration, 1);
+    current = Math.floor(progress * target);
 
-    function update() {
-      current += step;
-      if (current >= target) {
-        counter.textContent = formatNumber(target);
-      } else {
-        counter.textContent = formatNumber(current);
-        requestAnimationFrame(update);
-      }
+    if (target >= 1000000) {
+      counter.textContent = Math.floor(current / 1000000) + " triệu+";
+    } else if (target >= 1000) {
+      counter.textContent = Math.floor(current / 1000) + " nghìn+";
+    } else {
+      counter.textContent = current + "+";
     }
-    update();
-  });
+
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    }
+  }
+
+  requestAnimationFrame(update);
 }
 
 function onScroll() {
@@ -56,7 +53,7 @@ function onScroll() {
     stats.getBoundingClientRect().top < h - 120
   ) {
     counterStarted = true;
-    animateCounters();
+    counters.forEach(runCounter);
   }
 }
 
