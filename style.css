@@ -244,11 +244,12 @@ footer {
   margin: 30px 0;
 }
 
-/* ===== HERO BASED (CENTER + LIGHT BLUE BUTTON) ===== */
+/* ===== HERO BASED (COMPACT – FIX DỨT ĐIỂM) ===== */
 .hero-based {
-  min-height: auto;           /* bỏ full màn */
-  padding: 40px 20px 20px;    /* giảm trên & dưới */
-  margin-top: 80px;           /* cách menu vừa đủ */
+  margin: 0 !important;
+  margin-top: 70px !important;     /* chừa đúng chiều cao menu */
+  padding: 18px 16px !important;   /* ép sát trên & dưới */
+  min-height: unset !important;    /* bỏ full màn */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -256,19 +257,35 @@ footer {
   text-align: center;
 }
 
+/* Tiêu đề */
 .hero-based-title {
-  margin-bottom: 10px;
+  margin: 0 0 8px 0 !important;
+  font-size: clamp(28px, 6vw, 42px);
+  font-weight: 700;
 }
 
+/* Mô tả */
 .hero-based-desc {
-  margin-bottom: 18px;
+  margin: 0 0 14px 0 !important;
+  line-height: 1.4;
+  opacity: 0.85;
 }
 
+/* Nút */
 .hero-based-btn {
-  margin-bottom: 10px;
+  margin: 0 !important;
+  padding: 14px 42px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #7fffd4, #2fffd0);
+  color: #002b25;
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 30px rgba(127,255,212,0.45);
 }
 
-.hero-based-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 40px rgba(127,255,212,0.7);
+/* Không cho reveal đẩy khoảng cách */
+.hero-based.reveal {
+  transform: none !important;
 }
