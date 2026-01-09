@@ -265,25 +265,29 @@ footer {
   opacity: 0.85;
 }
 
-/* ===== NÚT TẢI XUỐNG ===== */
+/* ===== NÚT TẢI XUỐNG – MÀU XANH NEON ===== */
 .download-btn {
   display: inline-block;
-  padding: 14px 44px;
-  border-radius: 18px;
-  background: linear-gradient(135deg, #7fffd4, #2fffd0);
-  color: #00332b;
-  font-weight: 700;
-  text-decoration: none;
+  margin-top: 18px;
+  padding: 14px 46px;
 
+  background: linear-gradient(135deg, #7fffd4, #2fffd0);
+  color: #00332b !important;   /* ÉP MÀU CHỮ */
+
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none !important;
+
+  border-radius: 18px;
+  box-shadow: 0 0 30px rgba(47,255,208,0.5);
+
+  cursor: pointer;
+  pointer-events: auto;
   position: relative;
   z-index: 50;
-  pointer-events: auto;
-  cursor: pointer;
-
-  box-shadow: 0 0 28px rgba(127,255,212,0.45);
 }
 
-/* nhấn */
+/* hover / nhấn */
 .download-btn:active {
   transform: scale(0.96);
 }
