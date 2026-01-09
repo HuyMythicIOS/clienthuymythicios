@@ -41,21 +41,19 @@ body {
   cursor: pointer;
 }
 
-/* =====================
-   MENU OVERLAY (FIX TRIỆT ĐỂ)
-===================== */
+/* ===== FIX MENU OVERLAY - BẮT BUỘC ===== */
 .menu-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.75);
-  display: none;
+  background: rgba(0,0,0,0.7);
+  display: none !important;   /* ẨN HOÀN TOÀN */
   justify-content: center;
   align-items: center;
-  z-index: 2000;
+  z-index: 9999;
 }
 
 .menu-overlay.active {
-  display: flex;
+  display: flex !important;   /* CHỈ HIỆN KHI BẤM */
 }
 
 .menu-box {
