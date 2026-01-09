@@ -1,4 +1,9 @@
-* { box-sizing: border-box; }
+/* =====================
+   RESET + BASE
+===================== */
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -8,7 +13,9 @@ body {
   overflow-x: hidden;
 }
 
-/* MENU */
+/* =====================
+   TOP MENU
+===================== */
 .top-menu {
   position: fixed;
   top: 0;
@@ -23,7 +30,12 @@ body {
   z-index: 100;
 }
 
-.menu-title { color: #00ffe0; font-weight: 700; }
+.menu-title {
+  color: #00ffe0;
+  font-weight: 700;
+  font-size: 16px;
+}
+
 .menu-icon {
   font-size: 26px;
   background: none;
@@ -32,7 +44,9 @@ body {
   cursor: pointer;
 }
 
-/* OVERLAY */
+/* =====================
+   MENU OVERLAY
+===================== */
 .menu-overlay {
   position: fixed;
   inset: 0;
@@ -42,7 +56,10 @@ body {
   align-items: center;
   z-index: 200;
 }
-.menu-overlay.active { display: flex; }
+
+.menu-overlay.active {
+  display: flex;
+}
 
 .menu-box {
   background: #0d1a22;
@@ -75,29 +92,60 @@ body {
   text-decoration: none;
 }
 
-/* BACKGROUND ANIMATION */
+/* =====================
+   BACKGROUND – FIX IOS
+===================== */
 .bg-animation {
   position: fixed;
-  inset: 0;
+  inset: -25%;
   z-index: -1;
   background:
     radial-gradient(circle at 20% 30%, rgba(0,255,224,0.18), transparent 45%),
-    radial-gradient(circle at 80% 60%, rgba(0,180,255,0.15), transparent 45%);
-  animation: bgFloat 20s ease-in-out infinite;
-}
-@keyframes bgFloat {
-  0% { transform: translate(0,0); }
-  50% { transform: translate(-20px,-30px); }
-  100% { transform: translate(0,0); }
+    radial-gradient(circle at 80% 60%, rgba(0,180,255,0.15), transparent 45%),
+    radial-gradient(circle at 50% 90%, rgba(0,255,224,0.1), transparent 50%);
+  background-size: 140% 140%;
+  background-position: 50% 50%;
+  animation: bgMoveFast 8s ease-in-out infinite;
+  transform: none !important;
 }
 
-/* CONTENT */
+@keyframes bgMoveFast {
+  0% {
+    background-position: 50% 50%;
+  }
+  50% {
+    background-position: 60% 40%;
+  }
+  100% {
+    background-position: 50% 50%;
+  }
+}
+
+/* =====================
+   CONTENT
+===================== */
 .container {
   max-width: 640px;
   margin: 80px auto 0;
   padding: 20px;
 }
 
+h1 {
+  text-align: center;
+  color: #00ffe0;
+  font-size: 34px;
+  margin-bottom: 6px;
+}
+
+.tagline {
+  text-align: center;
+  color: #9fdfff;
+  margin-bottom: 30px;
+}
+
+/* =====================
+   SECTIONS (CARD)
+===================== */
 .section {
   background: rgba(12,22,28,0.9);
   border-left: 4px solid #00ffe0;
@@ -106,9 +154,25 @@ body {
   margin-bottom: 18px;
 }
 
-h1 { text-align: center; color: #00ffe0; }
-.tagline { text-align: center; color: #9fdfff; margin-bottom: 30px; }
+.section h2 {
+  margin-top: 0;
+  color: #00ffe0;
+  font-size: 18px;
+}
 
+.section p,
+.section li {
+  font-size: 14px;
+  color: #d6f4ff;
+}
+
+.section ul {
+  padding-left: 18px;
+}
+
+/* =====================
+   DISCORD BUTTON
+===================== */
 .discord-btn {
   display: inline-block;
   margin-top: 12px;
@@ -120,83 +184,62 @@ h1 { text-align: center; color: #00ffe0; }
   text-decoration: none;
 }
 
-/* STATS */
-.stats-row {
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
-  align-items: center;
-}
-.stat-item {
-  max-width: 320px;
-  width: 100%;
-  text-align: left;
-}
-.stat-item p {
-  color: #ff3b3b;
-  opacity: 0.75;
-}
-
-/* SCROLL EFFECT */
-.reveal {
-  opacity: 0;
-  transform: translateY(26px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-footer {
-  text-align: center;
-  font-size: 12px;
-  color: #7fbcd6;
-  margin: 30px 0;
-}
-
-/* ===== FIX STATS CENTER (GIỐNG ẢNH) ===== */
+/* =====================
+   STATS (CENTER + RED NEON)
+===================== */
 .stats-box {
   display: flex;
-  justify-content: center; /* căn giữa khung */
+  justify-content: center;
 }
 
 .stats-row {
   width: 100%;
-  max-width: 360px; /* đúng kích thước mobile */
+  max-width: 360px;
   display: flex;
   flex-direction: column;
   gap: 28px;
 }
 
 .stat-item {
-  text-align: left; /* chữ lệch trái như ảnh */
+  text-align: left;
 }
 
-/* ===== RED NEON TEXT (NHẸ) ===== */
+.stat-item h3 {
+  margin: 0;
+  font-size: 28px;
+  color: #00ffe0;
+}
+
 .stat-item p {
+  margin-top: 6px;
+  font-size: 14px;
   color: #ff3b3b;
   font-weight: 500;
   text-shadow:
-    0 0 6px rgba(255, 59, 59, 0.45),
-    0 0 12px rgba(255, 59, 59, 0.25);
+    0 0 4px rgba(255, 59, 59, 0.5),
+    0 0 10px rgba(255, 59, 59, 0.25);
 }
 
-/* ===== BACKGROUND MOVE FAST + CENTER (IOS SAFE) ===== */
-.bg-animation {
-  inset: -25%;
-  background-size: 140% 140%;
-  animation: bgMoveFast 10s ease-in-out infinite;
+/* =====================
+   SCROLL REVEAL
+===================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-@keyframes bgMoveFast {
-  0% {
-    background-position: 50% 50%;
-  }
-  50% {
-    background-position: 55% 45%;
-  }
-  100% {
-    background-position: 50% 50%;
-  }
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =====================
+   FOOTER
+===================== */
+footer {
+  text-align: center;
+  font-size: 12px;
+  color: #7fbcd6;
+  margin: 30px 0;
 }
