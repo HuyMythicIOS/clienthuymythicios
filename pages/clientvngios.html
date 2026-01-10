@@ -9,6 +9,24 @@
   <link rel="stylesheet" href="giaodienclient.css">
 </head>
 <body>
+<!-- chèn nhạc -->
+<audio id="bgMusic" loop>
+  <source src="../HuyImages/music.mp3" type="audio/mpeg">
+</audio>
+<script>
+const music = document.getElementById("bgMusic");
+
+function startMusic() {
+  music.volume = 1; // âm lượng
+  music.play().catch(()=>{});
+
+  document.removeEventListener("touchstart", startMusic);
+  document.removeEventListener("click", startMusic);
+}
+
+document.addEventListener("touchstart", startMusic, { once:true });
+document.addEventListener("click", startMusic, { once:true });
+</script>
 
 <!-- MENU BAR -->
 <div class="top-menu">
