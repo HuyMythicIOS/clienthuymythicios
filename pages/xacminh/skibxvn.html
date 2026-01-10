@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width,
+               initial-scale=1,
+               maximum-scale=1,
+               user-scalable=no,
+               viewport-fit=cover">
+
+<title>Nội dung bị khóa</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+    margin:0;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#cfe9ff,#e9d7ff);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:
+      env(safe-area-inset-top)
+      env(safe-area-inset-right)
+      env(safe-area-inset-bottom)
+      env(safe-area-inset-left);
+}
+
+.box{
+    width:100%;
+    max-width:360px;
+    background:#fff;
+    border-radius:20px;
+    padding:24px 20px;
+    text-align:center;
+    box-shadow:0 12px 35px rgba(0,0,0,.12);
+
+    opacity:0;
+    transform:translateY(25px);
+    animation:fadeIn .8s ease forwards;
+}
+
+@keyframes fadeIn{
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+h2{
+    margin:0 0 6px;
+    font-size:22px;
+}
+.desc{
+    font-size:14px;
+    color:#666;
+    margin-bottom:18px;
+}
+
+.btn{
+    width:100%;
+    border:none;
+    border-radius:14px;
+    padding:15px;
+    font-size:16px;
+    color:#fff;
+    margin-bottom:12px;
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.locked{ background:#e74c3c; }
+.done{ background:#2ecc71; }
+
+.check{
+    display:none;
+    font-weight:bold;
+}
+.done .check{ display:block; }
+
+.status{
+    margin-top:8px;
+    font-size:15px;
+    font-weight:500;
+    color:#e74c3c;
+}
+
+.loading{
+    display:none;
+    margin-top:12px;
+}
+.spinner{
+    width:30px;
+    height:30px;
+    border:4px solid #ddd;
+    border-top:4px solid #2ecc71;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+    margin:0 auto 6px;
+}
+@keyframes spin{
+    100%{transform:rotate(360deg);}
+}
+.timer{
+    font-size:14px;
+    color:#555;
+}
+
+.success{
+    display:none;
+    margin-top:12px;
+    color:#2ecc71;
+    font-weight:600;
+}
+
+.open-btn{
+    display:none;
+    margin-top:10px;
+    width:100%;
+    background:#6ab04c;
+    color:#fff;
+    border:none;
+    border-radius:14px;
+    padding:15px;
+    font-size:16px;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+    <h2>🔒 Nội dung bị khóa</h2>
+    <p class="desc">Vui lòng ấn vào cả 2 nút dưới đây để mở khóa</p>
+
+    <button class="btn locked" id="ytBtn">
+        <span>▶️ Subscribe YouTube</span>
+        <span class="check">✅</span>
+    </button>
+
+    <button class="btn locked" id="dcBtn">
+        <span>🎮 Tham gia Discord</span>
+        <span class="check">✅</span>
+    </button>
+
+    <!-- STATUS -->
+    <div class="status" id="status">
+        ❌ Chưa hoàn thành.
+    </div>
+
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <div class="timer" id="timer">Đang xác minh... Còn 8s</div>
+    </div>
+
+    <div class="success" id="success">
+        ✅ Đã mở khóa thành công!
+    </div>
+
+    <button class="open-btn" id="openBtn">
+        👉 Mở khóa ngay
+    </button>
+</div>
+
+<script>
+/* ===== CONFIG ===== */
+const YT_LINK  = "https://www.youtube.com/@huygaming4569";
+const DC_LINK  = "https://discord.gg/XEaC68tVnv";
+const REDIRECT = "https://link4m.com/5c6Mk7B";
+
+/* ===== STATE ===== */
+let yt=false, dc=false;
+let adLoaded=false;
+
+/* ===== ELEMENTS ===== */
+const ytBtn=document.getElementById("ytBtn");
+const dcBtn=document.getElementById("dcBtn");
+const status=document.getElementById("status");
+const loading=document.getElementById("loading");
+const timer=document.getElementById("timer");
+const success=document.getElementById("success");
+const openBtn=document.getElementById("openBtn");
+
+/* ===== LOAD ADSTERRA (CHỈ 1 LẦN) ===== */
+function loadAdsterra(){
+    if(adLoaded) return;
+    adLoaded=true;
+
+    const s=document.createElement("script");
+    s.src="https://pl28440493.effectivegatecpm.com/9a/0d/a5/9a0da502d2d4902c316c37b32232af77.js";
+    document.body.appendChild(s);
+}
+
+/* ===== BUTTON EVENTS ===== */
+ytBtn.onclick=()=>{
+    if(yt) return;
+    yt=true;
+    ytBtn.classList.replace("locked","done");
+
+    loadAdsterra(); // bật ads
+    window.open(YT_LINK,"_blank");
+    check();
+};
+
+dcBtn.onclick=()=>{
+    if(dc) return;
+    dc=true;
+    dcBtn.classList.replace("locked","done");
+
+    loadAdsterra(); // bật ads
+    window.open(DC_LINK,"_blank");
+    check();
+};
+
+/* ===== CHECK UNLOCK ===== */
+function check(){
+    if(yt && dc){
+        status.style.display="none";
+        loading.style.display="block";
+
+        let time=8;
+        timer.innerText=`Đang xác minh... Còn ${time}s`;
+
+        const cd=setInterval(()=>{
+            time--;
+            timer.innerText=`Đang xác minh... Còn ${time}s`;
+            if(time<=0){
+                clearInterval(cd);
+                loading.style.display="none";
+                success.style.display="block";
+                openBtn.style.display="block";
+            }
+        },1000);
+    }
+}
+
+/* ===== REDIRECT ===== */
+openBtn.onclick=()=>{
+    window.location.href = REDIRECT;
+};
+</script>
+
+</body>
+</html>
