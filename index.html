@@ -206,4 +206,15 @@ document.addEventListener("click", startMusic, { once:true });
 
   </div>
 </div>
+  <!-- JS POPUP (DÁN Ở ĐÂY) -->
+  <script>
+    function closeWelcome(){
+      document.getElementById("popupWelcome").style.display = "none";
+    }
+
+    window.addEventListener("load", () => {
+      const popup = document.getElementById("popupWelcome");
+      if(popup) popup.style.display = "flex";
+    });
+  </script>
 </html>
