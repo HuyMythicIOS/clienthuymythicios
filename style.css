@@ -296,3 +296,114 @@ footer {
 .bg-animation {
   pointer-events: none;
 }
+
+/* ===== POPUP CHÀO MỪNG ===== */
+.popup-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.75);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+
+.popup-box{
+  width:90%;
+  max-width:380px;
+  background:linear-gradient(145deg,#06131a,#02080c);
+  border-radius:18px;
+  padding:22px 18px 20px;
+  position:relative;
+  color:#eaffff;
+  animation:popupIn .4s ease;
+}
+
+@keyframes popupIn{
+  from{opacity:0;transform:scale(.9)}
+  to{opacity:1;transform:scale(1)}
+}
+
+/* Viền neon 7 màu */
+.neon-border::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  border-radius:20px;
+  background:linear-gradient(
+    270deg,
+    red,orange,yellow,green,cyan,blue,purple,red
+  );
+  background-size:400% 400%;
+  animation:neonMove 6s linear infinite;
+  z-index:-1;
+}
+@keyframes neonMove{
+  from{background-position:0% 50%}
+  to{background-position:400% 50%}
+}
+
+/* Nút X */
+.popup-close{
+  position:absolute;
+  top:10px;
+  right:12px;
+  background:none;
+  border:none;
+  color:#fff;
+  font-size:20px;
+  cursor:pointer;
+}
+
+/* Tiêu đề */
+.popup-title{
+  text-align:center;
+  margin:8px 0 14px;
+  color:#2fffd0;
+}
+
+/* Nội dung */
+.popup-content{
+  font-size:14px;
+  line-height:1.6;
+}
+.social-list{
+  padding-left:16px;
+}
+.social-list li{
+  margin-bottom:6px;
+}
+.social-list a{
+  color:#2fffd0;
+  text-decoration:none;
+  font-weight:600;
+}
+
+/* Ảnh cuối bảng */
+.popup-image-bottom{
+  margin-top:14px;
+  display:flex;
+  justify-content:center;
+}
+.popup-image-bottom img{
+  width:90px;
+  height:90px;
+  object-fit:cover;
+  border-radius:14px;
+  box-shadow:
+    0 0 12px rgba(47,255,208,.6),
+    0 0 24px rgba(47,255,208,.35);
+}
+
+/* Nút đóng */
+.popup-btn{
+  margin-top:16px;
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:14px;
+  background:#2fffd0;
+  color:#00322c;
+  font-weight:700;
+  cursor:pointer;
+}
