@@ -191,4 +191,57 @@ document.addEventListener("click", startMusic, { once:true });
 
 <script src="../script.js"></script>
 </body>
+<!-- ===== POPUP CHÀO MỪNG ===== -->
+<div class="popup-overlay" id="popupWelcome">
+  <div class="popup-box neon-border">
+
+    <!-- Nút X -->
+    <button class="popup-close" onclick="closeWelcome()">✕</button>
+
+    <!-- Tiêu đề -->
+    <h2 class="popup-title">👋 Chào mừng đến với HuyMythicIOS</h2>
+
+    <!-- Nội dung MXH -->
+    <div class="popup-content">
+      <p>🌐 Kết nối với chúng tôi qua mạng xã hội:</p>
+      <ul class="social-list">
+        <li>📘 Facebook:
+          <a href="https://www.facebook.com/share/g/1AUAsEZ4nd/?mibextid=wwXIfr" target="_blank">
+            Câu Cá Vạn Cân Việt Nam
+          </a>
+        </li>
+        <li>🎵 TikTok:
+          <a href="https://www.tiktok.com/@nobita45699" target="_blank">
+            HuyMythicIOS
+          </a>
+        </li>
+        <li>💬 Discord:
+          <a href="https://discord.gg/XEaC68tVnv" target="_blank">
+            Server Uchiha (Official)
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- ẢNH CUỐI BẢNG -->
+    <div class="popup-image-bottom">
+      <img src="HuyImages/logo.png" alt="HuyMythicIOS">
+    </div>
+
+    <!-- Nút đóng -->
+    <button class="popup-btn" onclick="closeWelcome()">Đóng thông báo</button>
+
+  </div>
+</div>
+  <!-- JS POPUP (DÁN Ở ĐÂY) -->
+  <script>
+    function closeWelcome(){
+      document.getElementById("popupWelcome").style.display = "none";
+    }
+
+    window.addEventListener("load", () => {
+      const popup = document.getElementById("popupWelcome");
+      if(popup) popup.style.display = "flex";
+    });
+  </script>
 </html>
