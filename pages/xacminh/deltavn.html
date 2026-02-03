@@ -178,16 +178,13 @@ h2{
 </div>
 
 <script>
-/* ===== CONFIG ===== */
 const YT_LINK  = "https://www.youtube.com/@huygaming4569";
 const DC_LINK  = "https://discord.gg/XEaC68tVnv";
-const REDIRECT = "https://link4m.com/RQLu4GhF";
+const REDIRECT = "https://link4m.com/xD97ry";
 
-/* ===== STATE ===== */
 let yt=false, dc=false;
 let adLoaded=false;
 
-/* ===== ELEMENTS ===== */
 const ytBtn=document.getElementById("ytBtn");
 const dcBtn=document.getElementById("dcBtn");
 const status=document.getElementById("status");
@@ -196,7 +193,6 @@ const timer=document.getElementById("timer");
 const success=document.getElementById("success");
 const openBtn=document.getElementById("openBtn");
 
-/* ===== LOAD ADSTERRA (CHỈ 1 LẦN) ===== */
 function loadAdsterra(){
     if(adLoaded) return;
     adLoaded=true;
@@ -206,13 +202,12 @@ function loadAdsterra(){
     document.body.appendChild(s);
 }
 
-/* ===== BUTTON EVENTS ===== */
 ytBtn.onclick=()=>{
     if(yt) return;
     yt=true;
     ytBtn.classList.replace("locked","done");
 
-    loadAdsterra(); // bật ads
+    loadAdsterra();
     window.open(YT_LINK,"_blank");
     check();
 };
@@ -222,12 +217,11 @@ dcBtn.onclick=()=>{
     dc=true;
     dcBtn.classList.replace("locked","done");
 
-    loadAdsterra(); // bật ads
+    loadAdsterra();
     window.open(DC_LINK,"_blank");
     check();
 };
 
-/* ===== CHECK UNLOCK ===== */
 function check(){
     if(yt && dc){
         status.style.display="none";
@@ -249,7 +243,6 @@ function check(){
     }
 }
 
-/* ===== REDIRECT ===== */
 openBtn.onclick=()=>{
     window.location.href = REDIRECT;
 };
