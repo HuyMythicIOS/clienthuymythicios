@@ -8,7 +8,7 @@
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #050b10;
+  background: linear-gradient(135deg, #02070c, #2003fc, #02070c);
   color: #e6faff;
   overflow-x: hidden;
 }
