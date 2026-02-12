@@ -98,70 +98,58 @@ const YT_LINK   = "https://www.youtube.com/@huygaming4569";
 const LIKE_LINK = "https://youtu.be/Hx0VG1khSkU?si=fHyGTfgyIrTdpOtB";
 const DC_LINK   = "https://discord.gg/XEaC68tVnv";
 const REDIRECT  = "https://link4m.com/QjTaQX";
+
 const ADS_DIRECT = "https://www.effectivegatecpm.com/ii6rhu2eay?key=4281f1fabd88d9cd20a896869f40503b";
 
 let yt=false, like=false, dc=false;
-let adLoaded=false, directLoaded=false, resetTimer=null;
+let ytAd=false, likeAd=false, dcAd=false;
+let resetTimer=null;
 
-const ytBtn=document.getElementById("ytBtn");
-const likeBtn=document.getElementById("likeBtn");
-const dcBtn=document.getElementById("dcBtn");
-const status=document.getElementById("status");
-const loading=document.getElementById("loading");
-const timer=document.getElementById("timer");
-const success=document.getElementById("success");
-const openBtn=document.getElementById("openBtn");
-
-function loadAdsterra(){
-    if(adLoaded) return;
-    adLoaded=true;
-    const s=document.createElement("script");
-    s.src="https://pl28440493.effectivegatecpm.com/9a/0d/a5/9a0da502d2d4902c316c37b32232af77.js";
-    document.body.appendChild(s);
-}
-
-function openDirectAds(){
-    if(directLoaded) return;
-    directLoaded=true;
+function openAds(){
     window.open(ADS_DIRECT,"_blank");
 }
 
 function resetAdsAfter30s(){
     if(resetTimer) return;
     resetTimer=setTimeout(()=>{
-        adLoaded=false;
-        directLoaded=false;
+        ytAd=false;
+        likeAd=false;
+        dcAd=false;
         resetTimer=null;
     },30000);
 }
 
-function handleClick(type, link, btn){
-    if(type.value) return;
+function handle(btn, state, adState, link){
+    if(state.value) return;
 
-    loadAdsterra();
-    openDirectAds();
+    if(!adState.value){
+        adState.value=true;
+        openAds();
+        resetAdsAfter30s();
+        return;
+    }
 
-    setTimeout(()=>{
-        const win = window.open(link,"_blank");
-
-        if(win){
-            type.value=true;
-            btn.classList.replace("locked","done");
-            check();
-        }
-    },500);
+    window.open(link,"_blank");
+    state.value=true;
+    btn.classList.replace("locked","done");
+    check();
 }
 
-ytBtn.onclick = ()=>handleClick({get value(){return yt}, set value(v){yt=v}}, YT_LINK, ytBtn);
-likeBtn.onclick = ()=>handleClick({get value(){return like}, set value(v){like=v}}, LIKE_LINK, likeBtn);
-dcBtn.onclick = ()=>handleClick({get value(){return dc}, set value(v){dc=v}}, DC_LINK, dcBtn);
+const ytBtn=document.getElementById("ytBtn");
+const likeBtn=document.getElementById("likeBtn");
+const dcBtn=document.getElementById("dcBtn");
+
+ytBtn.onclick = ()=>handle(ytBtn,{get value(){return yt},set value(v){yt=v}}, {get value(){return ytAd},set value(v){ytAd=v}}, YT_LINK);
+likeBtn.onclick = ()=>handle(likeBtn,{get value(){return like},set value(v){like=v}}, {get value(){return likeAd},set value(v){likeAd=v}}, LIKE_LINK);
+dcBtn.onclick = ()=>handle(dcBtn,{get value(){return dc},set value(v){dc=v}}, {get value(){return dcAd},set value(v){dcAd=v}}, DC_LINK);
 
 function check(){
     if(yt && like && dc){
-        status.style.display="none";
-        loading.style.display="block";
+        document.getElementById("status").style.display="none";
+        document.getElementById("loading").style.display="block";
 
         let time=8;
+        const timer=document.getElementById("timer");
         timer.innerText=`Đang xác minh... Còn ${time}s`;
 
         const cd=setInterval(()=>{
@@ -169,16 +157,15 @@ function check(){
             timer.innerText=`Đang xác minh... Còn ${time}s`;
             if(time<=0){
                 clearInterval(cd);
-                loading.style.display="none";
-                success.style.display="block";
-                openBtn.style.display="block";
-                resetAdsAfter30s();
+                document.getElementById("loading").style.display="none";
+                document.getElementById("success").style.display="block";
+                document.getElementById("openBtn").style.display="block";
             }
         },1000);
     }
 }
 
-openBtn.onclick=()=>{
+document.getElementById("openBtn").onclick=()=>{
     window.location.href = REDIRECT;
 };
 </script>
