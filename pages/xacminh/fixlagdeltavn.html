@@ -12,6 +12,7 @@
             --primary: #a855f7;
             --secondary: #ec4899;
             --accent: #10b981;
+            --locked: #ef4444;
         }
 
         body {
@@ -120,9 +121,9 @@
         }
 
         .spinner {
-            width: 32px; height: 32px;
+            width: 24px; height: 24px;
             border: 3px solid rgba(255, 255, 255, 0.1);
-            border-top-color: var(--primary);
+            border-top-color: white;
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
         }
@@ -139,6 +140,23 @@
         }
 
         .no-select { user-select: none; -webkit-user-select: none; }
+
+        #finalBtn.is-locked {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: rgba(239, 68, 68, 0.8);
+            pointer-events: none;
+            cursor: not-allowed;
+        }
+
+        #finalBtn.is-unlocked {
+            background: linear-gradient(90deg, #10b981, #059669);
+            border: 1px solid rgba(16, 185, 129, 0.5);
+            color: white;
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.4);
+            pointer-events: auto;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body class="p-4 sm:p-6">
@@ -153,7 +171,7 @@
                 </svg>
             </div>
             <h2 class="text-xl sm:text-2xl font-bold tracking-tight bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">🔒 Nội dung bị khóa</h2>
-            <p class="text-slate-400 mt-3 text-xs sm:text-sm font-medium leading-relaxed px-1">Vui lòng xác minh cả 3 nút dưới đây để mở khóa DeltaVN V51 FixLag</p>
+            <p class="text-slate-400 mt-3 text-xs sm:text-sm font-medium leading-relaxed px-1 text-center">Vui lòng xác minh cả 3 nút dưới đây để mở khóa DeltaVN V51 FixLag</p>
         </div>
 
         <div class="space-y-3">
@@ -198,21 +216,14 @@
             </button>
         </div>
 
-        <div id="actionArea" class="mt-8 sm:mt-10">
+        <div id="actionArea" class="mt-8 sm:mt-10 space-y-4">
+            <button id="finalBtn" class="is-locked w-full flex items-center justify-center gap-3 py-4 sm:py-5 rounded-2xl font-bold transition-all duration-500 text-base sm:text-lg uppercase tracking-widest">
+                <span id="btnText">Chưa Mở Khóa</span>
+                <div id="btnLoader" class="hidden spinner"></div>
+            </button>
+            
             <div id="hintUI">
                 <p class="text-center text-slate-500 text-[10px] sm:text-[11px] font-bold tracking-wide">© HuyMythicIOS – 2026</p>
-            </div>
-
-            <div id="loadingUI" class="hidden flex flex-col items-center gap-4 fade-up">
-                <div class="spinner"></div>
-                <p id="timerTxt" class="text-white text-xs sm:text-sm font-semibold tracking-wide text-center">Đang đồng bộ hóa dữ liệu...</p>
-            </div>
-
-            <div id="unlockUI" class="hidden space-y-4 fade-up">
-                <div class="h-px bg-white/10 w-full mb-4"></div>
-                <button id="finalBtn" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white py-4 sm:py-5 rounded-2xl font-bold shadow-[0_10px_40px_-10px_rgba(168,85,247,0.5)] transform transition active:scale-95 text-base sm:text-lg uppercase tracking-widest">
-                    Mở khóa ngay
-                </button>
             </div>
         </div>
     </div>
@@ -276,20 +287,22 @@
         }
 
         function initiateFinalStep() {
-            document.getElementById('hintUI').classList.add('hidden');
             document.getElementById('stepWrapper').classList.add('opacity-30', 'pointer-events-none');
-            const loader = document.getElementById('loadingUI');
-            const timer = document.getElementById('timerTxt');
-            loader.classList.remove('hidden');
-
+            const finalBtn = document.getElementById('finalBtn');
+            const btnText = document.getElementById('btnText');
+            const btnLoader = document.getElementById('btnLoader');
+            
+            btnLoader.classList.remove('hidden');
+            
             let seconds = DATA.WAIT;
             const countdown = setInterval(() => {
                 seconds--;
-                timer.innerText = `Xác minh thành công... ${seconds}s`;
+                btnText.innerText = `Xác minh... ${seconds}s`;
                 if (seconds <= 0) {
                     clearInterval(countdown);
-                    loader.classList.add('hidden');
-                    document.getElementById('unlockUI').classList.remove('hidden');
+                    btnLoader.classList.add('hidden');
+                    btnText.innerText = "Đã Mở Khóa";
+                    finalBtn.classList.replace('is-locked', 'is-unlocked');
                 }
             }, 1000);
         }
@@ -297,7 +310,11 @@
         document.getElementById('ytBtn').onclick = () => handleInteraction('ytBtn', 'yt', DATA.YT_URL);
         document.getElementById('likeBtn').onclick = () => handleInteraction('likeBtn', 'like', DATA.LIKE_URL);
         document.getElementById('dcBtn').onclick = () => handleInteraction('dcBtn', 'dc', DATA.DC_URL);
-        document.getElementById('finalBtn').onclick = () => window.location.href = DATA.REDIRECT;
+        document.getElementById('finalBtn').onclick = () => {
+            if (document.getElementById('finalBtn').classList.contains('is-unlocked')) {
+                window.location.href = DATA.REDIRECT;
+            }
+        };
     </script>
 
     <script src="https://pl28686410.effectivegatecpm.com/aa/e7/fc/aae7fc3e0643c4018ec9dc41f751d83f.js" async></script>
