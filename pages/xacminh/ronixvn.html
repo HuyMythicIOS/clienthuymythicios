@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>🔒 Nội dung bị khóa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #a855f7;
+            --secondary: #ec4899;
+            --accent: #10b981;
+            --locked: #ef4444;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #020617;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            overflow-y: auto;
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .bg-mesh {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2;
+            background: radial-gradient(circle at 20% 30%, rgba(168, 85, 247, 0.15) 0%, transparent 40%),
+                        radial-gradient(circle at 80% 70%, rgba(236, 72, 153, 0.15) 0%, transparent 40%);
+            animation: pulse-bg 10s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse-bg {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.1); opacity: 1; }
+        }
+
+        .particle {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.2;
+            pointer-events: none;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) translateX(0); opacity: 0; }
+            50% { opacity: 0.2; }
+            100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+        }
+
+        .glass-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            z-index: 10;
+            width: 92%;
+            margin: auto;
+        }
+
+        .btn-luxury {
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.03);
+            overflow: hidden;
+        }
+
+        .btn-luxury:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-luxury.done {
+            background: rgba(16, 185, 129, 0.15) !important;
+            border-color: rgba(16, 185, 129, 0.5) !important;
+            color: #34d399 !important;
+            pointer-events: none;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            box-shadow: 0 0 15px var(--primary);
+            transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .status-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: #ef4444;
+            box-shadow: 0 0 10px #ef4444;
+            transition: all 0.3s ease;
+        }
+
+        .done .status-dot {
+            background: var(--accent);
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        .spinner {
+            width: 24px; height: 24px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .fade-up {
+            animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .no-select { user-select: none; -webkit-user-select: none; }
+
+        #finalBtn.is-locked {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: rgba(239, 68, 68, 0.8);
+            pointer-events: none;
+            cursor: not-allowed;
+        }
+
+        #finalBtn.is-unlocked {
+            background: linear-gradient(90deg, #10b981, #059669);
+            border: 1px solid rgba(16, 185, 129, 0.5);
+            color: white;
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.4);
+            pointer-events: auto;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-6">
+    <div class="bg-mesh"></div>
+    <div id="particles-container"></div>
+
+    <div class="glass-card w-full max-w-sm rounded-[2.5rem] sm:rounded-[3rem] p-6 sm:p-8 no-select fade-up">
+        <div class="text-center mb-8 sm:mb-10">
+            <div class="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-white/10 to-transparent rounded-3xl mb-4 sm:mb-6 border border-white/10">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 sm:w-10 sm:h-10 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-bold tracking-tight bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">🔒 Nội dung bị khóa</h2>
+            <p class="text-slate-400 mt-3 text-xs sm:text-sm font-medium leading-relaxed px-1 text-center">Vui lòng xác minh cả 3 nút dưới đây để mở khóa RonixVN V1</p>
+            <p class="text-slate-500 mt-2 text-[10px] sm:text-[11px] font-semibold italic leading-relaxed px-1 text-center">Lưu Ý: Nếu ra 1 tab ads thì hãy đóng tab đó và quay lại để xác minh nhé!</p>
+        </div>
+
+        <div class="space-y-3">
+            <div class="flex justify-between text-[9px] sm:text-[10px] uppercase tracking-[0.2em] font-bold text-slate-500">
+                <span>Trạng thái</span>
+                <span id="progressText">0/3</span>
+            </div>
+            <div class="progress-bar">
+                <div id="progressFill" class="progress-fill"></div>
+            </div>
+        </div>
+
+        <div class="space-y-3 sm:space-y-4" id="stepWrapper">
+            <button id="ytBtn" class="btn-luxury w-full flex items-center justify-between px-5 py-4 sm:px-6 sm:py-5 rounded-2xl group">
+                <span class="flex items-center gap-3 sm:gap-4">
+                    <div class="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center bg-red-500/10 text-red-500 rounded-xl group-hover:scale-110 transition-transform">
+                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+                    </div>
+                    <span class="font-bold text-[13px] sm:text-[14px]">Subscribe YouTube</span>
+                </span>
+                <div class="status-dot"></div>
+            </button>
+
+            <button id="likeBtn" class="btn-luxury w-full flex items-center justify-between px-5 py-4 sm:px-6 sm:py-5 rounded-2xl group">
+                <span class="flex items-center gap-3 sm:gap-4">
+                    <div class="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center bg-blue-500/10 text-blue-400 rounded-xl group-hover:scale-110 transition-transform">
+                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20 8h-5.612l1.123-3.367c.202-.608.1-1.282-.275-1.802S14.253 2 13.612 2H12c-.297 0-.578.132-.769.36l-5.031 6H3c-1.103 0-2 .897-2 2v9c0 1.103.897 2 2 2h13.353c.927 0 1.748-.638 1.938-1.564l1.647-8A2.001 2.001 0 0018 9h-2.148l.412-1.235c.101-.304.05-.641-.138-.901S15.606 6 15.286 6H14l.011.001z"/></svg>
+                    </div>
+                    <span class="font-bold text-[13px] sm:text-[14px]">Like Video</span>
+                </span>
+                <div class="status-dot"></div>
+            </button>
+
+            <button id="dcBtn" class="btn-luxury w-full flex items-center justify-between px-5 py-4 sm:px-6 sm:py-5 rounded-2xl group">
+                <span class="flex items-center gap-3 sm:gap-4">
+                    <div class="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center bg-indigo-500/10 text-indigo-400 rounded-xl group-hover:scale-110 transition-transform">
+                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.086 2.157 2.419c0 1.334-.947 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.086 2.157 2.419c0 1.334-.946 2.419-2.157 2.419z"/></svg>
+                    </div>
+                    <span class="font-bold text-[13px] sm:text-[14px]">Join Discord</span>
+                </span>
+                <div class="status-dot"></div>
+            </button>
+        </div>
+
+        <div id="actionArea" class="mt-8 sm:mt-10 space-y-4">
+            <button id="finalBtn" class="is-locked w-full flex items-center justify-center gap-3 py-4 sm:py-5 rounded-2xl font-bold transition-all duration-500 text-base sm:text-lg uppercase tracking-widest">
+                <span id="btnText">Chưa Mở Khóa</span>
+                <div id="btnLoader" class="hidden spinner"></div>
+            </button>
+            
+            <div id="hintUI">
+                <p class="text-center text-slate-500 text-[10px] sm:text-[11px] font-bold tracking-wide">© HuyMythicIOS – 2026</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const DATA = {
+            YT_URL: "https://www.youtube.com/@huygaming4569",
+            LIKE_URL: "https://youtu.be/5s1JojExn6s?si=l90P2a4zOzj3RtlQ",
+            DC_URL: "https://discord.gg/XEaC68tVnv",
+            ADS_URL: "https://www.effectivegatecpm.com/ii6rhu2eay?key=4281f1fabd88d9cd20a896869f40503b",
+            REDIRECT: "https://link4m.com/FdjZbTA",
+            WAIT: 8
+        };
+
+        const state = {
+            yt: { done: false, ad: false },
+            like: { done: false, ad: false },
+            dc: { done: false, ad: false }
+        };
+
+        const particleContainer = document.getElementById('particles-container');
+        for (let i = 0; i < 20; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            p.style.width = Math.random() * 3 + 'px';
+            p.style.height = p.style.width;
+            p.style.left = Math.random() * 100 + 'vw';
+            p.style.top = Math.random() * 100 + 'vh';
+            p.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            p.style.animationDelay = (Math.random() * 5) + 's';
+            particleContainer.appendChild(p);
+        }
+
+        function updateProgress() {
+            const keys = Object.keys(state);
+            const doneCount = keys.filter(k => state[k].done).length;
+            const percent = (doneCount / keys.length) * 100;
+            
+            document.getElementById('progressFill').style.width = `${percent}%`;
+            document.getElementById('progressText').innerText = `${doneCount}/3`;
+
+            if (doneCount === 3) initiateFinalStep();
+        }
+
+        function handleInteraction(id, key, url) {
+            const btn = document.getElementById(id);
+            const current = state[key];
+
+            if (current.done) return;
+
+            if (!current.ad) {
+                current.ad = true;
+                window.open(DATA.ADS_URL, "_blank");
+                return;
+            }
+
+            window.open(url, "_blank");
+            current.done = true;
+            btn.classList.add('done');
+            updateProgress();
+        }
+
+        function initiateFinalStep() {
+            document.getElementById('stepWrapper').classList.add('opacity-30', 'pointer-events-none');
+            const finalBtn = document.getElementById('finalBtn');
+            const btnText = document.getElementById('btnText');
+            const btnLoader = document.getElementById('btnLoader');
+            
+            btnLoader.classList.remove('hidden');
+            
+            let seconds = DATA.WAIT;
+            const countdown = setInterval(() => {
+                seconds--;
+                btnText.innerText = `Xác minh... ${seconds}s`;
+                if (seconds <= 0) {
+                    clearInterval(countdown);
+                    btnLoader.classList.add('hidden');
+                    btnText.innerText = "Đã Mở Khóa";
+                    finalBtn.classList.replace('is-locked', 'is-unlocked');
+                }
+            }, 1000);
+        }
+
+        document.getElementById('ytBtn').onclick = () => handleInteraction('ytBtn', 'yt', DATA.YT_URL);
+        document.getElementById('likeBtn').onclick = () => handleInteraction('likeBtn', 'like', DATA.LIKE_URL);
+        document.getElementById('dcBtn').onclick = () => handleInteraction('dcBtn', 'dc', DATA.DC_URL);
+        document.getElementById('finalBtn').onclick = () => {
+            if (document.getElementById('finalBtn').classList.contains('is-unlocked')) {
+                window.location.href = DATA.REDIRECT;
+            }
+        };
+    </script>
+
+    <script src="https://pl28686410.effectivegatecpm.com/aa/e7/fc/aae7fc3e0643c4018ec9dc41f751d83f.js" async></script>
+</body>
+</html>
