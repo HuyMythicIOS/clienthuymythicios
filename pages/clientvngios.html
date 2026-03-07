@@ -4,67 +4,407 @@
   <meta charset="UTF-8">
   <title>Client IOS VNG | HuyMythicIOS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary-neon: #00f2ff;
+      --secondary-neon: #7000ff;
+      --bg-dark: #0a0a0c;
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --text-main: #ffffff;
+      --text-mute: #a0a0a0;
+    }
 
-  <!-- CSS CHUNG -->
-  <link rel="stylesheet" href="giaodienclient.css">
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      overflow-x: hidden;
+      line-height: 1.6;
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    /* BACKGROUND ANIMATION - Tối ưu lag */
+    .bg-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: radial-gradient(circle at 50% 50%, #1a1a2e 0%, #0a0a0c 100%);
+      will-change: transform;
+    }
+
+    .bg-animation::after {
+      content: "";
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+      opacity: 0.2;
+      animation: drift 100s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes drift {
+      from { transform: translate3d(0, 0, 0); }
+      to { transform: translate3d(-25%, -25%, 0); }
+    }
+
+    /* MENU BAR - Safe Area */
+    .top-menu {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: calc(15px + env(safe-area-inset-top)) 25px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 10, 12, 0.85);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      z-index: 1000;
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .menu-title {
+      font-weight: 800;
+      font-size: 1.2rem;
+      background: linear-gradient(90deg, var(--primary-neon), var(--secondary-neon));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 1px;
+    }
+
+    .menu-icon {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* MENU OVERLAY */
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 2000;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+    }
+
+    .menu-box {
+      text-align: center;
+      width: 85%;
+      max-width: 400px;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 40px 20px;
+      border-radius: 30px;
+      border: 1px solid var(--glass-border);
+      position: relative;
+    }
+
+    .close-menu {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: white;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .menu-link {
+      display: block;
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 10px 0;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      transition: 0.3s;
+    }
+
+    .menu-link:hover {
+      color: var(--primary-neon);
+      background: rgba(0, 242, 255, 0.1);
+      transform: translateX(5px);
+    }
+
+    /* CONTAINER */
+    .container {
+      padding: calc(120px + env(safe-area-inset-top)) 20px 40px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* HERO */
+    .center-title {
+      font-size: 3rem;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 5px;
+      text-shadow: 0 0 20px rgba(0, 242, 255, 0.5);
+    }
+
+    .tagline {
+      text-align: center;
+      color: var(--text-mute);
+      margin-bottom: 40px;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+
+    .client-title, .comment-title {
+      font-size: 1.4rem;
+      margin: 40px 0 20px;
+      padding-left: 15px;
+      border-left: 4px solid var(--primary-neon);
+    }
+
+    /* CLIENT LIST */
+    .client-list {
+      display: grid;
+      gap: 20px;
+    }
+
+    .client-card {
+      background: var(--card-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      content-visibility: auto;
+    }
+
+    .client-card:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--primary-neon);
+    }
+
+    .client-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 18px;
+      object-fit: cover;
+    }
+
+    .client-info {
+      flex: 1;
+    }
+
+    .client-info h3 {
+      font-size: 1.1rem;
+      margin-bottom: 4px;
+    }
+
+    .client-info h5 {
+      font-weight: 400;
+      color: var(--text-mute);
+      font-size: 0.85rem;
+      margin-bottom: 12px;
+    }
+
+    .client-download {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--primary-neon), var(--secondary-neon));
+      color: black;
+      text-decoration: none;
+      padding: 8px 24px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .discord-card {
+      border: 1px dashed #5865F2;
+      background: rgba(88, 101, 242, 0.1);
+    }
+
+    .discord-btn {
+      background: #5865F2;
+      color: white;
+    }
+
+    /* COMMENTS */
+    .comments {
+      display: grid;
+      gap: 15px;
+    }
+
+    .comment {
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 20px;
+      display: flex;
+      gap: 15px;
+      content-visibility: auto;
+    }
+
+    .avatar {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      border: 2px solid var(--secondary-neon);
+    }
+
+    .proof {
+      margin-top: 10px;
+      width: 100%;
+      max-width: 200px;
+      border-radius: 10px;
+      border: 1px solid var(--glass-border);
+    }
+
+    /* FOOTER */
+    .footer-mute {
+      text-align: center;
+      margin-top: 60px;
+      padding: 20px;
+      padding-bottom: calc(20px + env(safe-area-inset-bottom));
+      font-size: 0.8rem;
+      color: var(--text-mute);
+    }
+
+    /* POPUP */
+    .popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 3000;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-bottom);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .popup-overlay.show {
+      display: flex;
+      opacity: 1;
+    }
+
+    .popup-box {
+      background: #121214;
+      border: 2px solid var(--primary-neon);
+      border-radius: 30px;
+      padding: 30px;
+      max-width: 450px;
+      width: 100%;
+      position: relative;
+      text-align: center;
+      transform: scale(0.8);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .popup-overlay.show .popup-box {
+      transform: scale(1);
+    }
+
+    .popup-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .popup-btn {
+      width: 100%;
+      padding: 12px;
+      border-radius: 15px;
+      border: none;
+      background: var(--primary-neon);
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    /* REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translate3d(0, 30px, 0);
+      transition: all 0.6s ease-out;
+      will-change: opacity, transform;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  </style>
 </head>
 <body>
-<!-- chèn nhạc -->
+
 <audio id="bgMusic" loop>
   <source src="../HuyImages/nhactet2026.mp3" type="audio/mpeg">
 </audio>
-<script>
-const music = document.getElementById("bgMusic");
 
-function startMusic() {
-  music.volume = 1; // âm lượng
-  music.play().catch(()=>{});
-
-  document.removeEventListener("touchstart", startMusic);
-  document.removeEventListener("click", startMusic);
-}
-
-document.addEventListener("touchstart", startMusic, { once:true });
-document.addEventListener("click", startMusic, { once:true });
-</script>
-
-<!-- MENU BAR -->
 <div class="top-menu">
-  <span class="menu-title">HuyMythicIOS</span>
+  <span class="menu-title">HUYMYTHICIOS</span>
   <button class="menu-icon" id="openMenu">☰</button>
 </div>
 
-<!-- MENU OVERLAY -->
 <div class="menu-overlay" id="menuOverlay">
   <div class="menu-box">
     <button class="close-menu" id="closeMenu">✕</button>
-    <h2>Menu</h2>
-
+    <h2 style="margin-bottom: 25px; color: var(--primary-neon); font-weight: 800;">DANH MỤC</h2>
     <a href="../index.html" class="menu-link">Trang chủ</a>
-    <a href="https://discord.gg/XEaC68tVnv" target="_blank" class="menu-link">
-      Discord
-    </a>
+    <a href="#" class="menu-link">Bypass</a>
+    <a href="https://discord.gg/XEaC68tVnv" target="_blank" class="menu-link">Discord</a>
   </div>
 </div>
 
-<!-- BACKGROUND -->
 <div class="bg-animation"></div>
 
-<!-- CONTENT -->
 <div class="container">
-
-  <!-- HERO -->
   <h1 class="reveal center-title">HuyMythicIOS</h1>
   <p class="tagline reveal center">Roblox VN Hack Developer</p>
 
   <h2 class="client-title reveal">Tất Cả Client IOS VNG</h2>
 
-  <!-- CLIENT LIST -->
   <div class="client-list">
-
     <!-- 1 -->
     <div class="client-card reveal">
-      <img src="../HuyImages/app1.png" class="client-icon">
+      <img src="../HuyImages/app1.png" class="client-icon" onerror="this.src='https://via.placeholder.com/70'">
       <div class="client-info">
         <h3>DeltaVN V54 HuyMythic</h3>
         <h5>🟢 Cập Nhật Ngày 5/3</h5>
@@ -74,7 +414,7 @@ document.addEventListener("click", startMusic, { once:true });
 
     <!-- 2 -->
     <div class="client-card reveal">
-      <img src="../HuyImages/user3.png" class="client-icon">
+      <img src="../HuyImages/user3.png" class="client-icon" onerror="this.src='https://via.placeholder.com/70'">
       <div class="client-info">
         <h3>Nothing</h3>
         <h5>Nothinh</h5>
@@ -84,7 +424,7 @@ document.addEventListener("click", startMusic, { once:true });
 
     <!-- 3 -->
     <div class="client-card reveal">
-      <img src="../HuyImages/iconfixlagdeltavn.png" class="client-icon">
+      <img src="../HuyImages/iconfixlagdeltavn.png" class="client-icon" onerror="this.src='https://via.placeholder.com/70'">
       <div class="client-info">
         <h3>DeltaVN V54 FixLag HuyMythic VIP</h3>
         <h5>🟢 Cập Nhật Ngày 7/3</h5>
@@ -94,7 +434,7 @@ document.addEventListener("click", startMusic, { once:true });
     
     <!-- 6 -->
     <div class="client-card reveal">
-      <img src="../HuyImages/app3.png" class="client-icon">
+      <img src="../HuyImages/app3.png" class="client-icon" onerror="this.src='https://via.placeholder.com/70'">
       <div class="client-info">
         <h3>RonixVN V1 HuyMythic</h3>
         <h5>🟢 Cập Nhật Ngày 15/2</h5>
@@ -104,7 +444,7 @@ document.addEventListener("click", startMusic, { once:true });
 
     <!-- 4 -->
     <div class="client-card reveal">
-      <img src="../HuyImages/lienquanmobile2.png" class="client-icon">
+      <img src="../HuyImages/lienquanmobile2.png" class="client-icon" onerror="this.src='https://via.placeholder.com/70'">
       <div class="client-info">
         <h3>Liên Quân Map Light</h3>
         <h5>🟢 Cập Nhật Ngày 5/3</h5>
@@ -114,7 +454,7 @@ document.addEventListener("click", startMusic, { once:true });
 
     <!-- 5 -->
     <div class="client-card reveal">
-      <img src="../HuyImages/fcmobilevn.png" class="client-icon">
+      <img src="../HuyImages/fcmobilevn.png" class="client-icon" onerror="this.src='https://via.placeholder.com/70'">
       <div class="client-info">
         <h3>FC Mobile VN Hack</h3>
         <h5>🔴 Cập Nhật Ngày 12/2</h5>
@@ -124,24 +464,18 @@ document.addEventListener("click", startMusic, { once:true });
 
     <!-- 7 DISCORD -->
     <div class="client-card reveal discord-card">
-      <img src="../HuyImages/discord.png" class="client-icon">
+      <img src="../HuyImages/discord.png" class="client-icon" onerror="this.src='https://via.placeholder.com/70'">
       <div class="client-info">
         <h3>Server Discord Chính Chủ</h3>
-        <a href="https://discord.gg/XEaC68tVnv" class="client-download discord-btn">
-          Vào Discord
-        </a>
+        <a href="https://discord.gg/XEaC68tVnv" class="client-download discord-btn">Vào Discord</a>
       </div>
     </div>
-
   </div>
 
-  <!-- COMMENTS -->
   <h2 class="comment-title reveal">Đánh Giá Người Dùng ⭐⭐⭐⭐⭐</h2>
-
   <div class="comments">
-
     <div class="comment reveal">
-      <img src="../HuyImages/user1.png" class="avatar">
+      <img src="../HuyImages/user1.png" class="avatar" onerror="this.src='https://via.placeholder.com/45'">
       <div>
         <b>Ông Trump</b>
         <p>Tôi có thể mời bạn đến nhà trắng để tuyển bạn làm hack roblox được không? 👍</p>
@@ -149,16 +483,16 @@ document.addEventListener("click", startMusic, { once:true });
     </div>
 
     <div class="comment reveal">
-      <img src="../HuyImages/user2.png" class="avatar">
+      <img src="../HuyImages/user2.png" class="avatar" onerror="this.src='https://via.placeholder.com/45'">
       <div>
         <b>Công Chúa FiFa</b>
         <p>Delta V36 Ca Mi Na Vâu Vâu ⭐⭐⭐⭐⭐</p>
-        <img src="../HuyImages/proof1.png" class="proof">
+        <img src="../HuyImages/proof1.png" class="proof" onerror="this.style.display='none'">
       </div>
     </div>
 
     <div class="comment reveal">
-      <img src="../HuyImages/user3.png" class="avatar">
+      <img src="../HuyImages/user3.png" class="avatar" onerror="this.src='https://via.placeholder.com/45'">
       <div>
         <b>Phương Hữu Côn</b>
         <p>Admin hỗ trợ nhanh, dễ dùng, bản skibxvn không cần getkey ngon thí!!</p>
@@ -166,84 +500,88 @@ document.addEventListener("click", startMusic, { once:true });
     </div>
 
     <div class="comment reveal">
-      <img src="../HuyImages/user4.png" class="avatar">
+      <img src="../HuyImages/user4.png" class="avatar" onerror="this.src='https://via.placeholder.com/45'">
       <div>
         <b>Anh 7 Vấp Cỏ</b>
         <p>Dùng nhiều ngày chưa bị khoá acc, Delta vip quá siuuuuuuuu!</p>
-        <img src="../HuyImages/proof2.png" class="proof">
+        <img src="../HuyImages/proof2.png" class="proof" onerror="this.style.display='none'">
       </div>
     </div>
-
-    <div class="comment reveal">
-      <img src="../HuyImages/user5.png" class="avatar">
-      <div>
-        <b>Dưỡng Bự Con</b>
-        <p>DeltaVN quá mượt hu hú 🔥🔥🔥</p>
-        <img src="../HuyImages/proof3.png" class="proof">
-      </div>
-    </div>
-
   </div>
 
   <footer class="footer-mute">
     © HuyMythicIOS – 2026
   </footer>
-
 </div>
 
-<script src="../script.js"></script>
-</body>
-<!-- ===== POPUP CHÀO MỪNG ===== -->
 <div class="popup-overlay" id="popupWelcome">
-  <div class="popup-box neon-border">
-
-    <!-- Nút X -->
+  <div class="popup-box">
     <button class="popup-close" onclick="closeWelcome()">✕</button>
-
-    <!-- Tiêu đề -->
     <h2 class="popup-title">👋 Chào mừng đến với HuyMythicIOS</h2>
-
-    <!-- Nội dung MXH -->
     <div class="popup-content">
-      <p>🌐 Kết nối với chúng tôi qua mạng xã hội:</p>
-      <ul class="social-list">
-        <li>📘 Facebook:
-          <a href="https://www.facebook.com/share/g/1AUAsEZ4nd/?mibextid=wwXIfr" target="_blank">
-            Câu Cá Vạn Cân Việt Nam
-          </a>
-        </li>
-        <li>🎵 TikTok:
-          <a href="https://www.tiktok.com/@nobita45699" target="_blank">
-            HuyMythicIOS
-          </a>
-        </li>
-        <li>💬 Discord:
-          <a href="https://discord.gg/XEaC68tVnv" target="_blank">
-            Server Uchiha (Official)
-          </a>
-        </li>
+      <ul class="social-list" style="list-style:none; text-align:left;">
+        <li style="margin-bottom:10px;">📘 Facebook: <a href="https://www.facebook.com/share/g/1AUAsEZ4nd/?mibextid=wwXIfr" target="_blank" style="color:var(--primary-neon);">Câu Cá Vạn Cân Việt Nam</a></li>
+        <li style="margin-bottom:10px;">🎵 TikTok: <a href="https://www.tiktok.com/@nobita45699" target="_blank" style="color:var(--primary-neon);">HuyMythicIOS</a></li>
+        <li style="margin-bottom:10px;">💬 Discord: <a href="https://discord.gg/XEaC68tVnv" target="_blank" style="color:var(--primary-neon);">Server Uchiha</a></li>
       </ul>
     </div>
-
-    <!-- ẢNH CUỐI BẢNG -->
     <div class="popup-image-bottom">
-      <img src="../HuyImages/user3.png" alt="HuyMythicIOS">
+      <img src="../HuyImages/user3.png" style="width:80px; height:80px; border-radius:50%; border:2px solid var(--primary-neon);" onerror="this.src='https://via.placeholder.com/80'">
     </div>
-
-    <!-- Nút đóng -->
     <button class="popup-btn" onclick="closeWelcome()">Đóng thông báo</button>
-
   </div>
 </div>
-  <!-- JS POPUP (DÁN Ở ĐÂY) -->
-  <script>
-    function closeWelcome(){
-      document.getElementById("popupWelcome").style.display = "none";
-    }
 
-    window.addEventListener("load", () => {
-      const popup = document.getElementById("popupWelcome");
-      if(popup) popup.style.display = "flex";
+<script>
+  const music = document.getElementById("bgMusic");
+  function startMusic() {
+    music.volume = 1;
+    music.play().catch(()=>{});
+    ["touchstart", "click"].forEach(ev => document.removeEventListener(ev, startMusic));
+  }
+  ["touchstart", "click"].forEach(ev => document.addEventListener(ev, startMusic, { once:true }));
+
+  const openMenu = document.getElementById("openMenu");
+  const closeMenu = document.getElementById("closeMenu");
+  const overlay = document.getElementById("menuOverlay");
+
+  openMenu.onclick = () => overlay.style.display = "flex";
+  closeMenu.onclick = () => overlay.style.display = "none";
+  overlay.onclick = (e) => { if(e.target === overlay) overlay.style.display = "none"; };
+
+  function closeWelcome(){
+    const popup = document.getElementById("popupWelcome");
+    popup.classList.remove("show");
+    setTimeout(() => popup.style.display = "none", 500);
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const popup = document.getElementById("popupWelcome");
+    if(popup) {
+      popup.style.display = "flex";
+      setTimeout(() => popup.classList.add("show"), 50);
+    }
+    reveal();
+  });
+
+  let isScrolling = false;
+  function reveal() {
+    const reveals = document.querySelectorAll(".reveal");
+    const windowHeight = window.innerHeight;
+    reveals.forEach(el => {
+      const elementTop = el.getBoundingClientRect().top;
+      if (elementTop < windowHeight - 50) el.classList.add("active");
     });
-  </script>
+    isScrolling = false;
+  }
+
+  window.addEventListener("scroll", () => {
+    if (!isScrolling) {
+      window.requestAnimationFrame(reveal);
+      isScrolling = true;
+    }
+  });
+</script>
+
+</body>
 </html>
