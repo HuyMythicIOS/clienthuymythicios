@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liên kết đang cập nhật | Coming Soon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-full bg-slate-950 text-slate-100 flex flex-col justify-between selection:bg-indigo-500 selection:text-white font-sans antialiased overflow-x-hidden">
+
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="absolute -top-40 -left-40 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute top-1/2 -right-40 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+    </div>
+
+    <main class="flex-grow flex items-center justify-center px-4 py-12 z-10">
+        <div class="max-w-2xl w-full text-center space-y-8">
+            
+            <!-- Return to Website Button -->
+            <div class="flex justify-center">
+                <a href="https://huymythicios.io.vn/pages/clientvngios.html"
+   class="group relative inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-semibold text-base shadow-xl shadow-indigo-600/30 transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer border border-indigo-400/20">
+
+    <span class="absolute inset-0 rounded-2xl bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+
+    <i class="fa-solid fa-arrow-left text-lg group-hover:-translate-x-1 transition-transform"></i>
+
+    <span>Quay lại trang web</span>
+                </a>
+            </div>
+
+            <!-- Title & Subtitle -->
+            <div class="space-y-4">
+                <span class="inline-block px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide uppercase bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                    Tính năng đang phát triển
+                </span>
+                <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
+                    Liên kết này <span class="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">chưa sẵn sàng</span>
+                </h1>
+                <p class="text-slate-400 text-base sm:text-lg max-w-lg mx-auto">
+                    Liên kết đang cập nhật hoặc bị hỏng, có thể HuyMythic đang cập nhật phiên bản mới. Vui lòng quay lại sau!
+                </p>
+            </div>
+
+            <!-- Video Container -->
+            <div class="mt-6 flex justify-center">
+                <div class="relative w-full max-w-md rounded-2xl overflow-hidden shadow-2xl border border-slate-800 bg-slate-900">
+                    <video 
+                        autoplay 
+                        muted 
+                        loop 
+                        playsinline 
+                        class="w-full h-auto object-cover aspect-video"
+                    >
+                        <!-- Video source using the uploaded video -->
+                        <source src="tranbinh.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="w-full p-6 text-center text-xs text-slate-500 z-10 border-t border-slate-900/80">
+        <p>&copy; 2026 HuyMythicIOS.</p>
+    </footer>
+</body>
+</html>
