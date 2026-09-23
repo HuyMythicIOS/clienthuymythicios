@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>HuyMythicIOS - Tải xuống IPA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        body {
+            /* Nền gradient chuyển động đẹp mắt */
+            background: linear-gradient(-45deg, #3b82f6, #8b5cf6, #ec4899, #f43f5e);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Hiệu ứng Liquid Glass (Concept iOS 26) */
+        .glass-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.05) 100%);
+            backdrop-filter: blur(40px) saturate(120%);
+            -webkit-backdrop-filter: blur(40px) saturate(120%);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-top: 1px solid rgba(255, 255, 255, 0.45);
+            border-left: 1px solid rgba(255, 255, 255, 0.45);
+            box-shadow: 0 15px 40px -10px rgba(0, 0, 0, 0.4), inset 0 0 25px rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center font-sans text-white antialiased">
+    
+    <!-- Lớp phủ tàng hình chặn toàn bộ click (Yêu cầu 2 click quảng cáo) -->
+    <div id="hiddenAdOverlay" class="fixed inset-0 z-[9999] w-full h-full bg-transparent"></div>
+
+    <main class="glass-card max-w-sm w-[calc(100%-2rem)] mx-auto p-6 sm:p-8 rounded-[2rem] flex flex-col items-center text-center relative z-10">
+        
+        <!-- Tiêu đề HuyMythicIOS -->
+        <div class="mb-5 text-xs font-bold tracking-[0.3em] uppercase text-white/90 border-b border-white/40 pb-2 inline-block">
+            HuyMythicIOS
+        </div>
+        
+        <!-- Ảnh Logo HuyMythicIOS thay cho Icon sấm sét -->
+        <div class="mb-5 flex justify-center">
+            <img src="huymythicios.jpg" alt="HuyMythicIOS Logo" class="w-24 h-24 rounded-full border-2 border-white/40 drop-shadow-xl object-cover shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+        </div>
+        
+        <h1 class="text-2xl font-bold mb-3 drop-shadow-md">Chọn phiên bản tải xuống</h1>
+        <p class="text-base text-white/90 mb-8 drop-shadow">Vui lòng chọn tệp IPA bạn muốn tải về bên dưới.</p>
+        
+        <div class="flex flex-col gap-4 w-full">
+            
+            <!-- Nút DeltaVN V71 -->
+            <a href="javascript:void(0)" data-url="https://gtraffic.io/F3BCQOv" class="redirect-btn group flex items-center justify-between px-5 py-4 text-base font-semibold text-gray-900 bg-white rounded-2xl hover:bg-gray-50 transition-all duration-300 shadow-lg active:scale-95 touch-manipulation">
+                <div class="flex items-center">
+                    <img src="app1.png" alt="Logo" class="w-11 h-11 rounded-xl object-cover mr-3 group-hover:scale-110 transition-transform shadow-sm border border-gray-100">
+                    <span>DeltaVN V71 IPA</span>
+                </div>
+                <svg class="w-5 h-5 text-gray-400 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+            
+            <!-- Nút DeltaQT V8 -->
+            <a href="javascript:void(0)" data-url="https://gtraffic.io/0vQ3VCQ" class="redirect-btn group flex items-center justify-between px-5 py-4 text-base font-semibold text-gray-900 bg-white rounded-2xl hover:bg-gray-50 transition-all duration-300 shadow-lg active:scale-95 touch-manipulation">
+                <div class="flex items-center">
+                    <img src="robloxqt.png" alt="Logo" class="w-11 h-11 rounded-xl object-cover mr-3 group-hover:scale-110 transition-transform shadow-sm border border-gray-100">
+                    <span>DeltaQT V8 IPA</span>
+                </div>
+                <svg class="w-5 h-5 text-gray-400 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+            
+        </div>
+        
+        <!-- Footer / Bản quyền -->
+        <div class="mt-8 text-xs text-white/80 flex items-center justify-center font-medium tracking-wide drop-shadow-sm">
+            &copy; HuyMythicIOS - 2026
+        </div>
+    </main>
+
+    <!-- Modal Xác minh -->
+    <div id="verifyModal" class="fixed inset-0 z-50 flex items-center justify-center hidden bg-black/60 backdrop-blur-sm transition-opacity opacity-0 duration-300">
+        <div class="glass-card max-w-sm w-[calc(100%-2rem)] mx-auto p-6 rounded-3xl flex flex-col transform scale-95 transition-transform duration-300">
+            <h2 class="text-xl font-bold mb-2 text-center drop-shadow-md">Xác minh để mở khóa</h2>
+            <p class="text-sm text-white/90 text-center mb-6">Vui lòng hoàn thành lần lượt 3 bước dưới đây để lấy link tải xuống.</p>
+            
+            <div class="flex flex-col gap-3">
+                <!-- Bước 1: YouTube -->
+                <button id="step1Btn" class="verify-step flex items-center justify-between px-4 py-3 bg-white text-gray-900 rounded-xl font-semibold shadow-md active:scale-95 transition-all">
+                    <div class="flex items-center gap-3">
+                        <div class="text-red-500 w-6 h-6 flex items-center justify-center">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        </div>
+                        <span>1. Đăng ký YouTube</span>
+                    </div>
+                    <div class="status-icon text-gray-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                </button>
+                
+                <!-- Bước 2: Like Video -->
+                <button id="step2Btn" class="verify-step flex items-center justify-between px-4 py-3 bg-white/50 text-gray-600 rounded-xl font-semibold shadow-md cursor-not-allowed transition-all opacity-70" disabled>
+                    <div class="flex items-center gap-3">
+                        <div class="text-blue-500 w-6 h-6 flex items-center justify-center">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>
+                        </div>
+                        <span>2. Like Video</span>
+                    </div>
+                    <div class="status-icon text-gray-400">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                </button>
+                
+                <!-- Bước 3: Discord -->
+                <button id="step3Btn" class="verify-step flex items-center justify-between px-4 py-3 bg-white/50 text-gray-600 rounded-xl font-semibold shadow-md cursor-not-allowed transition-all opacity-70" disabled>
+                    <div class="flex items-center gap-3">
+                        <div class="text-indigo-500 w-6 h-6 flex items-center justify-center">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg>
+                        </div>
+                        <span>3. Tham gia Discord</span>
+                    </div>
+                    <div class="status-icon text-gray-400">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                </button>
+            </div>
+            
+            <!-- Nút Hành động -->
+            <div class="mt-6 flex flex-col gap-3">
+                <button id="unlockBtn" class="w-full py-3 rounded-xl font-bold text-white bg-gray-500 opacity-50 cursor-not-allowed shadow-lg transition-all" disabled>
+                    <div class="flex items-center justify-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                        Đang khóa
+                    </div>
+                </button>
+                <button id="closeModalBtn" class="w-full py-2 rounded-xl font-semibold text-white/80 hover:text-white bg-white/10 hover:bg-white/20 transition-all">
+                    Hủy bỏ
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- HỆ THỐNG QUẢNG CÁO ẨN TOÀN MÀN HÌNH ---
+            const hiddenAdOverlay = document.getElementById('hiddenAdOverlay');
+            let globalAdClickCount = 0;
+            const globalAdUrl = 'https://www.profitableratecpmnetwork.com/ii6rhu2eay?key=4281f1fabd88d9cd20a896869f40503b';
+
+            if (hiddenAdOverlay) {
+                hiddenAdOverlay.addEventListener('click', (e) => {
+                    // Ngăn click xuyên qua các phần tử bên dưới
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Mở tab quảng cáo Adsterra
+                    window.open(globalAdUrl, '_blank');
+                    globalAdClickCount++;
+                    
+                    // Đủ 2 lần thì xóa lớp phủ tàng hình đi để dùng web bình thường
+                    if (globalAdClickCount >= 2) {
+                        hiddenAdOverlay.remove();
+                    }
+                });
+            }
+            // ---------------------------------------------
+
+            const btns = document.querySelectorAll('.redirect-btn');
+            const modal = document.getElementById('verifyModal');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            const unlockBtn = document.getElementById('unlockBtn');
+            
+            const step1Btn = document.getElementById('step1Btn');
+            const step2Btn = document.getElementById('step2Btn');
+            const step3Btn = document.getElementById('step3Btn');
+            
+            let currentTargetUrl = '';
+            let countdownTimer = null;
+            
+            // LINK XÁC MINH THẬT
+            const verifyLinks = {
+                step1: 'https://www.youtube.com/@huygaming4569', // Link Kênh YouTube
+                step2: 'https://youtu.be/CLWV9zvdmxs?si=bfU7WJ0NY4f4TX96', // Link Video cần like
+                step3: 'https://discord.gg/XEaC68tVnv'  // Link Discord
+            };
+
+            // LINK QUẢNG CÁO ADSTERRA CỦA BẠN
+            const adUrl = 'https://www.profitableratecpmnetwork.com/ii6rhu2eay?key=4281f1fabd88d9cd20a896869f40503b';
+
+            // TRẠNG THÁI KIỂM TRA ĐÃ CLICK QUẢNG CÁO HAY CHƯA
+            let step1AdClicked = false;
+            let step2AdClicked = false;
+            let step3AdClicked = false;
+            let unlockAdClicked = false;
+
+            const openModal = (url) => {
+                currentTargetUrl = url;
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    modal.classList.remove('opacity-0');
+                    modal.querySelector('.glass-card').classList.remove('scale-95');
+                }, 10);
+                resetSteps();
+            };
+
+            const closeModal = () => {
+                modal.classList.add('opacity-0');
+                modal.querySelector('.glass-card').classList.add('scale-95');
+                if (countdownTimer) clearInterval(countdownTimer); 
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 300);
+            };
+
+            const resetSteps = () => {
+                if (countdownTimer) clearInterval(countdownTimer);
+                
+                // Khôi phục lại trạng thái chưa bấm quảng cáo
+                step1AdClicked = false;
+                step2AdClicked = false;
+                step3AdClicked = false;
+                unlockAdClicked = false;
+
+                // Khôi phục text ban đầu cho các nút
+                step1Btn.querySelector('span').innerText = "1. Đăng ký YouTube";
+                step2Btn.querySelector('span').innerText = "2. Like Video";
+                step3Btn.querySelector('span').innerText = "3. Tham gia Discord";
+                
+                setStepActive(step1Btn);
+                setStepInactive(step2Btn);
+                setStepInactive(step3Btn);
+                
+                unlockBtn.disabled = true;
+                unlockBtn.className = "w-full py-3 rounded-xl font-bold text-white bg-gray-500 opacity-50 cursor-not-allowed shadow-lg transition-all";
+                unlockBtn.innerHTML = `
+                    <div class="flex items-center justify-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                        Đang khóa
+                    </div>
+                `;
+            };
+
+            const setStepActive = (btn) => {
+                btn.disabled = false;
+                btn.className = "verify-step flex items-center justify-between px-4 py-3 bg-white text-gray-900 rounded-xl font-semibold shadow-md active:scale-95 transition-all cursor-pointer";
+                const icon = btn.querySelector('.status-icon');
+                icon.className = "status-icon text-gray-300";
+                icon.innerHTML = `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`;
+            };
+
+            const setStepInactive = (btn) => {
+                btn.disabled = true;
+                btn.className = "verify-step flex items-center justify-between px-4 py-3 bg-white/50 text-gray-600 rounded-xl font-semibold shadow-md cursor-not-allowed transition-all opacity-70";
+                const icon = btn.querySelector('.status-icon');
+                icon.className = "status-icon text-gray-400";
+                icon.innerHTML = `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`;
+            };
+
+            const setStepDone = (btn) => {
+                btn.className = "verify-step flex items-center justify-between px-4 py-3 bg-green-50 text-green-700 rounded-xl font-semibold shadow-inner transition-all";
+                const icon = btn.querySelector('.status-icon');
+                icon.className = "status-icon text-green-500";
+                icon.innerHTML = `<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>`;
+            };
+
+            btns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault(); 
+                    const destinationUrl = btn.getAttribute('data-url');
+                    if (destinationUrl) {
+                        openModal(destinationUrl);
+                    }
+                });
+            });
+
+            closeModalBtn.addEventListener('click', closeModal);
+
+            step1Btn.addEventListener('click', () => {
+                if (!step1AdClicked) {
+                    // Lần 1: Mở quảng cáo và yêu cầu bấm lại
+                    window.open(adUrl, '_blank');
+                    step1AdClicked = true;
+                    step1Btn.querySelector('span').innerText = "1. Bấm lại để Xác minh";
+                } else {
+                    // Lần 2: Mở link thật và xong bước
+                    window.open(verifyLinks.step1, '_blank');
+                    step1Btn.querySelector('span').innerText = "1. Đăng ký YouTube"; // Reset text
+                    setStepDone(step1Btn);
+                    setStepActive(step2Btn);
+                }
+            });
+
+            step2Btn.addEventListener('click', () => {
+                if (!step2AdClicked) {
+                    window.open(adUrl, '_blank');
+                    step2AdClicked = true;
+                    step2Btn.querySelector('span').innerText = "2. Bấm lại để Xác minh";
+                } else {
+                    window.open(verifyLinks.step2, '_blank');
+                    step2Btn.querySelector('span').innerText = "2. Like Video";
+                    setStepDone(step2Btn);
+                    setStepActive(step3Btn);
+                }
+            });
+
+            step3Btn.addEventListener('click', () => {
+                if (!step3AdClicked) {
+                    window.open(adUrl, '_blank');
+                    step3AdClicked = true;
+                    step3Btn.querySelector('span').innerText = "3. Bấm lại để Xác minh";
+                } else {
+                    window.open(verifyLinks.step3, '_blank');
+                    step3Btn.querySelector('span').innerText = "3. Tham gia Discord";
+                    setStepDone(step3Btn);
+                    
+                    // Bắt đầu đếm ngược 5 giây
+                    let timeLeft = 5;
+                    unlockBtn.className = "w-full py-3 rounded-xl font-bold text-white bg-blue-500 shadow-lg cursor-not-allowed transition-all opacity-90";
+                    unlockBtn.innerHTML = `Vui lòng đợi ${timeLeft} giây...`;
+                    
+                    countdownTimer = setInterval(() => {
+                        timeLeft--;
+                        if (timeLeft > 0) {
+                            unlockBtn.innerHTML = `Vui lòng đợi ${timeLeft} giây...`;
+                        } else {
+                            clearInterval(countdownTimer);
+                            unlockBtn.disabled = false;
+                            unlockBtn.className = "w-full py-3 rounded-xl font-bold text-white bg-gradient-to-r from-green-500 to-emerald-600 shadow-lg active:scale-95 transition-all cursor-pointer";
+                            unlockBtn.innerHTML = `
+                                <div class="flex items-center justify-center">
+                                    Đi tới link tải
+                                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                                </div>
+                            `;
+                        }
+                    }, 1000);
+                }
+            });
+            
+            unlockBtn.addEventListener('click', () => {
+                if(!unlockBtn.disabled && currentTargetUrl) {
+                    
+                    if (!unlockAdClicked) {
+                        // LẦN 1: MỞ TAB QUẢNG CÁO, GIỮ NGUYÊN BẢNG VÀ ĐỔI CHỮ
+                        window.open(adUrl, '_blank');
+                        unlockAdClicked = true;
+                        
+                        unlockBtn.innerHTML = `
+                            <div class="flex items-center justify-center">
+                                Bấm lại để Tải xuống
+                                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                            </div>
+                        `;
+                    } else {
+                        // LẦN 2: BẮT ĐẦU CHUYỂN HƯỚNG ĐẾN TRANG ĐÍCH
+                        unlockBtn.innerHTML = `
+                            <div class="flex items-center justify-center">
+                                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                Đang chuyển hướng...
+                            </div>
+                        `;
+                        
+                        // CHUYỂN HƯỚNG TRANG HIỆN TẠI TỚI MEDIAFIRE/ZUFILE
+                        setTimeout(() => {
+                            window.location.href = currentTargetUrl;
+                        }, 800);
+                    }
+                }
+            });
+        });
+    </script>
+    <script src="https://pl28686410.profitableratecpmnetwork.com/aa/e7/fc/aae7fc3e0643c4018ec9dc41f751d83f.js"></script>
+</body>
+</html>
