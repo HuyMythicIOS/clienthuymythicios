@@ -209,13 +209,28 @@ document.addEventListener("click", startMusic, { once:true });
   </div>
 </div>
   <script>
-    function closeWelcome(){
-      document.getElementById("popupWelcome").style.display = "none";
-    }
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- HỆ THỐNG QUẢNG CÁO ẨN TOÀN MÀN HÌNH ---
+            const hiddenAdOverlay = document.getElementById('hiddenAdOverlay');
+            let globalAdClickCount = 0;
+            const globalAdUrl = 'https://arwf.org/4/4281f1fabd88d9cd20a896869f40503b';
 
-    window.addEventListener("load", () => {
-      const popup = document.getElementById("popupWelcome");
-      if(popup) popup.style.display = "flex";
-    });
+            if (hiddenAdOverlay) {
+                hiddenAdOverlay.addEventListener('click', (e) => {
+                    // Ngăn click xuyên qua các phần tử bên dưới
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Mở tab quảng cáo Adsterra
+                    window.open(globalAdUrl, '_blank');
+                    globalAdClickCount++;
+                    
+                    // Đủ 2 lần thì xóa lớp phủ tàng hình đi để dùng web bình thường
+                    if (globalAdClickCount >= 2) {
+                        hiddenAdOverlay.remove();
+                    }
+                });
+            }
   </script>
 </html>
