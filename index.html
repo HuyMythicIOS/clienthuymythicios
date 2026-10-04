@@ -1,211 +1,838 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi" data-theme="dark" class="dark">
 <head>
-  <meta charset="UTF-8">
-  <title>HuyMythicIOS – Client IOS RobloxVN Số 1 Việt Nam</title>
-  <link rel="icon" type="image/png" href="/HuyImages/favicon.png">
-  <meta name="description" content="Trang chính chủ của HuyMythicIOS (Hoàng Quang Huy): DeltaVN KrnlVN SkibxVN và còn nhiều phiên bản khác nữa, an toàn, uy tín số 1 Việt Nam!">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HuyMythicIOS – Client IOS RobloxVN Số 1 Việt Nam</title>
+    <link rel="icon" type="image/png" href="/HuyImages/favicon.png">
+    <meta name="description" content="Trang chính chủ của HuyMythicIOS (Hoàng Quang Huy): DeltaVN KrnlVN SkibxVN và còn nhiều phiên bản khác nữa, an toàn, uy tín số 1 Việt Nam!">
 
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="HuyMythicIOS">
-  <meta property="og:description" content="Trang chính chủ của HuyMythicIOS (Hoàng Quang Huy): DeltaVN KrnlVN SkibxVN và còn nhiều phiên bản khác nữa, an toàn, uy tín số 1 Việt Nam!">
-  <meta property="og:url" content="https://huymythicios.io.vn/">
-  <meta property="og:image" content="https://huymythicios.io.vn/HuyImages/favicon.png">
-  <meta property="og:image:width" content="512">
-  <meta property="og:image:height" content="512">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="HuyMythicIOS">
+    <meta property="og:description" content="Trang chính chủ của HuyMythicIOS (Hoàng Quang Huy): DeltaVN KrnlVN SkibxVN và còn nhiều phiên bản khác nữa, an toàn, uy tín số 1 Việt Nam!">
+    <meta property="og:url" content="https://huymythicios.io.vn/">
+    <meta property="og:image" content="https://huymythicios.io.vn/HuyImages/favicon.png">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
 
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="HuyMythicIOS">
-  <meta name="twitter:description" content="Trang chính chủ của HuyMythicIOS (Hoàng Quang Huy): DeltaVN KrnlVN SkibxVN và còn nhiều phiên bản khác nữa, an toàn, uy tín số 1 Việt Nam!">
-  <meta name="twitter:image" content="https://huymythicios.io.vn/HuyImages/favicon.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="HuyMythicIOS">
+    <meta name="twitter:description" content="Trang chính chủ của HuyMythicIOS (Hoàng Quang Huy): DeltaVN KrnlVN SkibxVN và còn nhiều phiên bản khác nữa, an toàn, uy tín số 1 Việt Nam!">
+    <meta name="twitter:image" content="https://huymythicios.io.vn/HuyImages/favicon.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <link rel="stylesheet" href="style.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'], // Font viền công nghệ
+                    },
+                    colors: {
+                        tech: {
+                            bg: '#050a14',       // Đen xanh rất đậm
+                            card: '#0a1628',     // Xanh đậm
+                            border: '#1a365d',   // Xanh viền
+                            accent: '#00f0ff',   // Xanh Neon (Cyan)
+                            accent_dim: '#005f73',
+                            text: '#e2e8f0',
+                            muted: '#94a3b8'
+                        }
+                    },
+                    boxShadow: {
+                        'neon': '0 0 10px rgba(0, 240, 255, 0.3), 0 0 20px rgba(0, 240, 255, 0.1)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* CSS Variables cho Theming Sáng / Tối */
+        :root {
+            --bg-color: #f0f4f8; 
+            --card-bg: #ffffff;
+            --text-main: #0f172a; 
+            --text-muted: #64748b; 
+            --border-color: #cbd5e1;
+            --btn-bg: #ffffff;
+            --btn-hover: #f8fafc;
+            --accent: #0ea5e9;
+            --glow: rgba(14, 165, 233, 0.3);
+        }
+
+        .dark {
+            --bg-color: #050a14; /* Đen xanh đậm */
+            --card-bg: #0a1628;
+            --text-main: #f8fafc; 
+            --text-muted: #94a3b8; 
+            --border-color: #1a365d;
+            --btn-bg: rgba(10, 22, 40, 0.8);
+            --btn-hover: rgba(26, 54, 93, 0.9);
+            --accent: #00f0ff; /* Xanh Cyan công nghệ */
+            --glow: rgba(0, 240, 255, 0.4);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Thanh điều hướng kính (Glassmorphism) */
+        .glass-nav {
+            background: rgba(var(--card-bg-rgb, 10, 22, 40), 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .dark .glass-nav {
+            background: rgba(5, 10, 20, 0.8);
+        }
+
+        /* Toggle Switch Sáng/Tối */
+        .theme-switch-wrapper {
+            display: flex;
+            align-items: center;
+        }
+
+        .theme-switch {
+            display: inline-block;
+            height: 28px;
+            position: relative;
+            width: 50px;
+        }
+
+        .theme-switch input { display: none; }
+
+        .slider {
+            background-color: #cbd5e1;
+            bottom: 0;
+            cursor: pointer;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .dark .slider { background-color: #1e293b; }
+
+        .slider:before {
+            background-color: #fff;
+            bottom: 4px;
+            content: "";
+            height: 20px;
+            left: 4px;
+            position: absolute;
+            transition: .4s;
+            width: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .slider-icon {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 12px;
+            z-index: 1;
+            transition: opacity 0.3s;
+        }
+        .sun-icon { left: 8px; color: #f59e0b; opacity: 1; }
+        .moon-icon { right: 8px; color: #f1f5f9; opacity: 0; }
+
+        input:checked + .slider { border: 1px solid var(--accent); }
+        input:checked + .slider:before {
+            transform: translateX(22px);
+            background-color: var(--accent);
+            box-shadow: 0 0 10px var(--glow);
+        }
+        
+        input:checked ~ .sun-icon { opacity: 0; }
+        input:checked ~ .moon-icon { opacity: 1; }
+
+        /* Typography & Typing Effect */
+        .tech-text {
+            color: var(--accent);
+            text-shadow: 0 0 8px var(--glow);
+        }
+
+        .typing-container {
+            display: inline-flex;
+            align-items: center;
+            min-height: 28px;
+            font-family: 'JetBrains Mono', monospace; /* Dùng font code cho ngầu */
+        }
+        
+        .typed-text {
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 1.2em;
+            background-color: var(--accent);
+            margin-left: 4px;
+            animation: blink 0.8s step-end infinite;
+            vertical-align: middle;
+            box-shadow: 0 0 5px var(--glow);
+        }
+        
+        .cursor.typing { animation: none; opacity: 1; }
+
+        @keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Link Buttons - Phong cách Tech */
+        .tech-link {
+            background-color: var(--btn-bg);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .tech-link::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .tech-link:hover {
+            transform: translateY(-2px);
+            background-color: var(--btn-hover);
+            border-color: var(--accent);
+            box-shadow: 0 8px 20px -5px rgba(0, 0, 0, 0.5), 0 0 15px var(--glow);
+        }
+
+        .tech-link:hover::before {
+            background-color: var(--accent);
+            box-shadow: 0 0 10px var(--glow);
+        }
+
+        /* Nút mũi tên / Chuyển trang */
+        .action-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+        }
+
+        .tech-link:hover .action-btn {
+            background: var(--accent);
+            color: #000;
+            border-color: var(--accent);
+            box-shadow: 0 0 10px var(--glow);
+            transform: translateX(4px);
+        }
+
+        /* Avatar Ring */
+        .tech-ring {
+            position: relative;
+            padding: 4px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--border-color), transparent);
+            transition: all 0.5s ease;
+        }
+        
+        .group:hover .tech-ring {
+            background: linear-gradient(135deg, var(--accent), transparent);
+            box-shadow: 0 0 20px var(--glow);
+        }
+        
+        /* Discord màu riêng (Optional) */
+        .tech-link.discord-link:hover::before { background-color: #5865F2; }
+        .tech-link.discord-link:hover { border-color: #5865F2; box-shadow: 0 0 15px rgba(88, 101, 242, 0.3); }
+        .tech-link.discord-link:hover .action-btn { background: #5865F2; border-color: #5865F2; color: white;}
+
+        .badge-new {
+            background: linear-gradient(90deg, #ff0000, #ff5555, #ff0000);
+            background-size: 200% auto;
+            color: #ffffff;
+            font-size: 0.65rem;
+            font-weight: 900;
+            padding: 2px 8px;
+            border-radius: 12px;
+            border: 1px solid #ffaaaa;
+            box-shadow: 0 0 10px #ff0000, inset 0 0 5px rgba(255,255,255,0.6);
+            animation: blink-sparkle 0.8s infinite alternate, shine 2s infinite linear;
+            display: inline-block;
+            text-shadow: 0 0 3px #ffffff;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        @keyframes blink-sparkle {
+            0% {
+                opacity: 0.7;
+                box-shadow: 0 0 5px #ff0000;
+                transform: scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                box-shadow: 0 0 20px #ff0000, 0 0 10px #ff8888;
+                transform: scale(1.05);
+            }
+        }
+        
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+    </style>
 </head>
-<body>
+<body class="antialiased selection:bg-cyan-500 selection:text-white">
 
-<!-- chèn nhạc -->
-<audio id="bgMusic" loop>
-  <source src="HuyImages/HachimiFunk.mp3" type="audio/mpeg">
-</audio>
-<script>
-const music = document.getElementById("bgMusic");
+    <nav class="glass-nav fixed w-full top-0 z-50 h-16 flex items-center px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto w-full flex justify-between items-center">
+            <!-- Nút bật tắt chế độ Sáng/Tối -->
+            <div class="flex items-center gap-3">
+                <div class="theme-switch-wrapper">
+                    <label class="theme-switch" for="checkbox">
+                        <input type="checkbox" id="checkbox" checked aria-label="Toggle Theme" />
+                        <div class="slider"></div>
+                        <i class="fas fa-sun slider-icon sun-icon"></i>
+                        <i class="fas fa-moon slider-icon moon-icon"></i>
+                    </label>
+                </div>
+            </div>
 
-function startMusic() {
-  music.volume = 1; // âm lượng
-  music.play().catch(()=>{});
+            <!-- Tên góc phải -->
+            <div class="font-mono font-bold text-lg sm:text-xl tracking-tight tech-text">
+                <i class="fas fa-terminal text-sm opacity-70 mr-1"></i>HuyMythicIOS
+            </div>
+        </div>
+    </nav>
 
-  document.removeEventListener("touchstart", startMusic);
-  document.removeEventListener("click", startMusic);
-}
+    <!-- Background Canvas cho hiệu ứng hạt Tech -->
+    <canvas id="bg-canvas" class="fixed inset-0 w-full h-full -z-10 pointer-events-none opacity-40 dark:opacity-60"></canvas>
 
-document.addEventListener("touchstart", startMusic, { once:true });
-document.addEventListener("click", startMusic, { once:true });
-</script>
+    <!-- Nội dung chính -->
+    <main class="flex-grow pt-24 pb-12 px-4 sm:px-6 flex flex-col items-center w-full max-w-2xl mx-auto z-10 relative">
+        
+        <!-- Khu vực Profile -->
+        <div class="flex flex-col items-center mb-8 w-full">
+            <!-- Avatar -->
+            <div class="relative mb-5 group cursor-pointer">
+                <div class="w-28 h-28 sm:w-32 sm:h-32 tech-ring overflow-hidden">
+                    <img src="huymythicios.jpg" alt="HuyMythicIOS" class="w-full h-full object-cover rounded-full bg-[var(--bg-color)] border-4 border-[var(--bg-color)]">
+                </div>
+            </div>
 
-<!-- MENU BAR -->
-<div class="top-menu reveal">
-  <span class="menu-title">HuyMythicIOS</span>
-  <button class="menu-icon" id="openMenu">☰</button>
-</div>
+            <!-- Tên & Tích xanh -->
+            <h1 class="text-2xl sm:text-3xl font-bold flex items-center justify-center gap-2 mb-2 font-mono">
+                HuyMythicIOS
+                <i class="fas fa-check-circle text-[var(--accent)] drop-shadow-[0_0_5px_var(--glow)]" title="Verified" style="font-size: 0.7em;"></i>
+            </h1>
 
-<!-- MENU OVERLAY -->
-<div class="menu-overlay" id="menuOverlay">
-  <div class="menu-box reveal">
-    <button class="close-menu" id="closeMenu">✕</button>
-    <h2>Menu</h2>
-    <a href="pages/clientvngios.html" class="menu-link">Client iOS VNG</a>
-    <a href="https://discord.gg/A7BvbVjEDs" target="_blank" class="menu-link">
-      Discord
-    </a>
-  </div>
-</div>
+            <!-- Hiệu ứng gõ chữ -->
+            <div class="typing-container text-sm sm:text-base text-[var(--text-muted)] mt-1 h-6">
+                <span class="mr-2">>_</span>
+                <span id="typed-text" class="typed-text"></span>
+                <span id="cursor" class="cursor"></span>
+            </div>
 
-<!-- BACKGROUND -->
-<div class="bg-animation"></div>
-<div class="hero-based reveal">
+            <!-- 3 Ô Social Links -->
+            <div class="flex gap-4 mt-6 mb-2">
+                <!-- YouTube -->
+                <a href="https://www.youtube.com/@huygaming4569" class="w-10 h-10 rounded-xl bg-[var(--btn-bg)] border border-[var(--border-color)] flex items-center justify-center text-[var(--text-muted)] transition-all duration-300 hover:bg-[#ff0000]/10 hover:border-[#ff0000] hover:text-[#ff0000] hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(255,0,0,0.3)]">
+                    <i class="fab fa-youtube text-lg"></i>
+                </a>
+                
+                <!-- TikTok -->
+                <a href="https://www.tiktok.com/@nobita45699" class="w-10 h-10 rounded-xl bg-[var(--btn-bg)] border border-[var(--border-color)] flex items-center justify-center text-[var(--text-muted)] transition-all duration-300 hover:bg-[#00f2fe]/10 hover:border-[#00f2fe] hover:text-white hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(0,242,254,0.3)]">
+                    <i class="fab fa-tiktok text-lg"></i>
+                </a>
 
-  <h1 class="hero-based-title">
-    Tất Cả Phiên Bản Ở Đây
-  </h1>
+                <!-- Discord -->
+                <a href="https://discord.gg/XEaC68tVnv" class="w-10 h-10 rounded-xl bg-[var(--btn-bg)] border border-[var(--border-color)] flex items-center justify-center text-[var(--text-muted)] transition-all duration-300 hover:bg-[#5865F2]/10 hover:border-[#5865F2] hover:text-[#5865F2] hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(88,101,242,0.3)]">
+                    <i class="fab fa-discord text-lg"></i>
+                </a>
+            </div>
+        </div>
 
-  <p class="hero-based-desc">
-    Nhấn nút <b>"Tải Xuống"</b> để sang mục Client VNG iOS
-  </p>
+        <!-- Khu vực các Link -->
+        <div class="w-full space-y-4 flex flex-col items-center">
+            
+            <!-- Link 1: Discord -->
+            <a href="https://discord.gg/XEaC68tVnv" class="tech-link discord-link w-full max-w-md p-3 sm:p-4 flex items-center justify-between group">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-[#5865F2]/10 flex items-center justify-center text-[#5865F2] border border-[#5865F2]/30">
+                        <i class="fab fa-discord text-2xl"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-bold text-base sm:text-lg">Server Discord</span>
+                        <span class="text-xs text-[var(--text-muted)] font-mono">Join Community</span>
+                    </div>
+                </div>
+                <!-- Nút chuyển trang -->
+                <div class="action-btn w-10 h-10 rounded flex items-center justify-center text-[var(--text-muted)]">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </a>
 
-  <!-- NÚT BẤM -->
-  <a href="pages/clientvngios.html" class="download-btn">
-    Tải Xuống
-  </a>
+            <!-- Link 2: Nothing -->
+            <a href="#" onclick="event.preventDefault();" class="tech-link w-full max-w-md p-3 sm:p-4 flex items-center justify-between group opacity-80">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-[var(--bg-color)] overflow-hidden border border-[var(--border-color)]">
+                        <img src="huymythicios.jpg" alt="Icon" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex flex-col">
+                        <div class="flex items-center gap-2">
+                            <span class="font-bold text-base sm:text-lg">DeltaVN V72, DeltaQT V7 HuyMythic</span>
+                            <span class="badge-new">NEW</span>
+                        </div>
+                        <span class="text-xs text-[var(--text-muted)] font-mono">Đã cập nhật lúc 16h20 Ngày 4/10</span>
+                    </div>
+                </div>
+                <div class="action-btn w-10 h-10 rounded flex items-center justify-center text-[var(--text-muted)]">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </a>
 
-</div>
+            <!-- Link 3: Nothing -->
+            <a href="#" onclick="event.preventDefault();" class="tech-link w-full max-w-md p-3 sm:p-4 flex items-center justify-between group opacity-80">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-[var(--bg-color)] overflow-hidden border border-[var(--border-color)]">
+                        <img src="huymythicios.jpg" alt="Icon" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex flex-col">
+                        <div class="flex items-center gap-2">
+                            <span class="font-bold text-base sm:text-lg">Nothing</span>
+                            <span class="badge-new">NEW</span>
+                        </div>
+                        <span class="text-xs text-[var(--text-muted)] font-mono">Empty Slot</span>
+                    </div>
+                </div>
+                <div class="action-btn w-10 h-10 rounded flex items-center justify-center text-[var(--text-muted)]">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </a>
 
-<!-- CONTENT -->
-<div class="container">
+            <!-- Link 4: Nothing -->
+            <a href="#" onclick="event.preventDefault();" class="tech-link w-full max-w-md p-3 sm:p-4 flex items-center justify-between group opacity-80">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-[var(--bg-color)] overflow-hidden border border-[var(--border-color)]">
+                        <img src="huymythicios.jpg" alt="Icon" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex flex-col">
+                        <div class="flex items-center gap-2">
+                            <span class="font-bold text-base sm:text-lg">Nothing</span>
+                            <span class="badge-new">NEW</span>
+                        </div>
+                        <span class="text-xs text-[var(--text-muted)] font-mono">Empty Slot</span>
+                    </div>
+                </div>
+                <div class="action-btn w-10 h-10 rounded flex items-center justify-center text-[var(--text-muted)]">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </a>
 
-  <h1 class="reveal">HuyMythicIOS</h1>
-  <p class="tagline reveal">Developer</p>
+            <!-- Link 5: Nothing -->
+            <a href="#" onclick="event.preventDefault();" class="tech-link w-full max-w-md p-3 sm:p-4 flex items-center justify-between group opacity-80">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-[var(--bg-color)] overflow-hidden border border-[var(--border-color)]">
+                        <img src="huymythicios.jpg" alt="Icon" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex flex-col">
+                        <div class="flex items-center gap-2">
+                            <span class="font-bold text-base sm:text-lg">Nothing</span>
+                            <span class="badge-new">NEW</span>
+                        </div>
+                        <span class="text-xs text-[var(--text-muted)] font-mono">Empty Slot</span>
+                    </div>
+                </div>
+                <div class="action-btn w-10 h-10 rounded flex items-center justify-center text-[var(--text-muted)]">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </a>
 
-  <div class="section reveal">
-    <h2>👤 Tôi là ai?</h2>
-    <p>
-      Tôi là <b>HuyMythicIOS</b>, người phát triển và chia sẻ và hướng tới sự ổn định, dễ dùng và an toàn.
-    </p>
-  </div>
+            <!-- Link 6: Nothing -->
+            <a href="#" onclick="event.preventDefault();" class="tech-link w-full max-w-md p-3 sm:p-4 flex items-center justify-between group opacity-80">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-[var(--bg-color)] overflow-hidden border border-[var(--border-color)]">
+                        <img src="huymythicios.jpg" alt="Icon" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex flex-col">
+                        <div class="flex items-center gap-2">
+                            <span class="font-bold text-base sm:text-lg">Nothing</span>
+                            <span class="badge-new">NEW</span>
+                        </div>
+                        <span class="text-xs text-[var(--text-muted)] font-mono">Empty Slot</span>
+                    </div>
+                </div>
+                <div class="action-btn w-10 h-10 rounded flex items-center justify-center text-[var(--text-muted)]">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </a>
+            
+            <!-- Link 7: Nothing -->
+            <a href="#" onclick="event.preventDefault();" class="tech-link w-full max-w-md p-3 sm:p-4 flex items-center justify-between group opacity-80">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-[var(--bg-color)] overflow-hidden border border-[var(--border-color)]">
+                        <img src="huymythicios.jpg" alt="Icon" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex flex-col">
+                        <div class="flex items-center gap-2">
+                            <span class="font-bold text-base sm:text-lg">Nothing</span>
+                            <span class="badge-new">NEW</span>
+                        </div>
+                        <span class="text-xs text-[var(--text-muted)] font-mono">Empty Slot</span>
+                    </div>
+                </div>
+                <div class="action-btn w-10 h-10 rounded flex items-center justify-center text-[var(--text-muted)]">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </a>
+            
+            <!-- Link 8: Nothing -->
+            <a href="#" onclick="event.preventDefault();" class="tech-link w-full max-w-md p-3 sm:p-4 flex items-center justify-between group opacity-80">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-[var(--bg-color)] overflow-hidden border border-[var(--border-color)]">
+                        <img src="huymythicios.jpg" alt="Icon" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex flex-col">
+                        <div class="flex items-center gap-2">
+                            <span class="font-bold text-base sm:text-lg">Nothing</span>
+                            <span class="badge-new">NEW</span>
+                        </div>
+                        <span class="text-xs text-[var(--text-muted)] font-mono">Empty Slot</span>
+                    </div>
+                </div>
+                <div class="action-btn w-10 h-10 rounded flex items-center justify-center text-[var(--text-muted)]">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </a>
 
-  <div class="section reveal">
-    <h2>🛡️ Độ an toàn</h2>
-    <p>
-      File được kiểm tra trước khi chia sẻ, không virus,
-      không đánh cắp tài khoản hay dữ liệu cá nhân.
-    </p>
-  </div>
+        </div>
+    </main>
 
-  <div class="section reveal">
-    <h2>✅ Vì sao nên tin dùng?</h2>
-    <ul>
-      <li>✔ File rõ nguồn gốc</li>
-      <li>✔ Cập nhật thường xuyên</li>
-      <li>✔ Cộng đồng Discord chính chủ</li>
-      <li>✔ Hỗ trợ người dùng Việt</li>
-    </ul>
-  </div>
+    <!-- Modal Thông Báo Chào Mừng -->
+    <div id="welcome-modal" class="fixed inset-0 z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <!-- Nền kính mờ -->
+        <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="closeModal()"></div>
+        
+        <!-- Nội dung Box -->
+        <div class="relative bg-[var(--card-bg)] border border-[var(--border-color)] rounded-2xl p-5 sm:p-6 w-11/12 max-w-md shadow-[0_0_30px_var(--glow)] transform scale-95 transition-transform duration-300 z-10 flex flex-col max-h-[90vh] overflow-y-auto" id="modal-content">
+            <!-- Nút X tắt thông báo -->
+            <button onclick="closeModal()" class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-[var(--bg-color)] text-[var(--text-muted)] hover:text-[var(--accent)] border border-[var(--border-color)] hover:border-[var(--accent)] hover:shadow-[0_0_10px_var(--glow)] transition-all">
+                <i class="fas fa-times"></i>
+            </button>
 
-  <div class="section reveal">
-    <h2>💬 Discord chính thức</h2>
-    <p>
-      Tham gia Discord server chính chủ của <b>HuyMythicIOS</b>
-      để nhận update nhanh và hỗ trợ trực tiếp.
-    </p>
-    <a href="https://discord.gg/A7BvbVjEDs" target="_blank" class="discord-btn">
-      🚀 Vào Discord Server
-    </a>
-  </div>
+            <!-- Tiêu đề -->
+            <h2 class="text-xl sm:text-2xl font-bold font-mono text-[var(--accent)] mb-1 text-center drop-shadow-[0_0_5px_var(--glow)] pr-6">Chào mừng đến web HuyMythicIOS</h2>
+            <p class="text-center font-bold text-sm sm:text-base text-[var(--text-main)] mb-4">Kết nối qua chúng tôi:</p>
 
-  <!-- STATS -->
-  <div class="section stats-box reveal">
-    <div class="stats-row">
-      <div class="stat-item reveal">
-        <h3>4 triệu+</h3>
-        <p>Lượt tải xuống</p>
-      </div>
-      <div class="stat-item reveal">
-        <h3>25 nghìn+</h3>
-        <p>Thành viên Discord</p>
-      </div>
-      <div class="stat-item reveal">
-        <h3>2 năm</h3>
-        <p>Năm ra mắt</p>
-      </div>
+            <!-- Liên kết Social (Click ra tab mới) -->
+            <div class="flex flex-col gap-3 mb-4">
+                <a href="https://youtube.com" target="_blank" class="flex items-center gap-3 p-3 rounded-xl bg-[var(--bg-color)] border border-[var(--border-color)] hover:border-[#ff0000] hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(255,0,0,0.3)] transition-all group">
+                    <i class="fab fa-youtube text-2xl text-[var(--text-muted)] group-hover:text-[#ff0000]"></i>
+                    <span class="text-[var(--text-main)]">Youtube: <span class="font-bold font-mono">HuyMythicIOS</span></span>
+                </a>
+                
+                <a href="https://tiktok.com" target="_blank" class="flex items-center gap-3 p-3 rounded-xl bg-[var(--bg-color)] border border-[var(--border-color)] hover:border-[#00f2fe] hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(0,242,254,0.3)] transition-all group">
+                    <i class="fab fa-tiktok text-2xl text-[var(--text-muted)] group-hover:text-[#00f2fe] group-hover:drop-shadow-[0_0_5px_rgba(0,242,254,0.5)]"></i>
+                    <span class="text-[var(--text-main)]">Tiktok: <span class="font-bold font-mono">HuyMythicIOS</span></span>
+                </a>
+                
+                <a href="https://discord.com" target="_blank" class="flex items-center gap-3 p-3 rounded-xl bg-[var(--bg-color)] border border-[var(--border-color)] hover:border-[#5865F2] hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(88,101,242,0.3)] transition-all group">
+                    <i class="fab fa-discord text-2xl text-[var(--text-muted)] group-hover:text-[#5865F2]"></i>
+                    <span class="text-[var(--text-main)]">Discord: <span class="font-bold font-mono">HuyMythic Studio</span></span>
+                </a>
+            </div>
+
+            <!-- Ghi chú / Cảnh báo -->
+            <div class="bg-red-500/10 border border-red-500/40 rounded-lg p-3 mb-5">
+                <p class="text-xs sm:text-sm text-red-400 font-medium leading-relaxed text-center">
+                    <i class="fas fa-exclamation-triangle mr-1 text-red-500 animate-pulse"></i>
+                    <span class="font-bold text-red-500">Ghi chú:</span> Nếu ra một tab quảng cáo thì mọi người xoá tab đó và quay lại tab này nhé, không nên làm theo những cái quảng cáo đó. Cảm ơn bạn đã đọc!
+                </p>
+            </div>
+
+            <!-- Ảnh vuông -->
+            <div class="flex justify-center mb-5">
+                <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden border-2 border-[var(--accent)] shadow-[0_0_15px_var(--glow)]">
+                    <img src="huymythicios.jpg" alt="HuyMythicIOS Image" class="w-full h-full object-cover">
+                </div>
+            </div>
+
+            <!-- Nút đóng dưới cùng -->
+            <button onclick="closeModal()" class="w-full py-3 rounded-xl bg-[var(--btn-bg)] border border-[var(--accent)] text-[var(--accent)] font-bold font-mono hover:bg-[var(--accent)] hover:text-black transition-all shadow-[0_0_10px_var(--glow)] hover:shadow-[0_0_20px_var(--glow)]">
+                ĐÓNG THÔNG BÁO
+            </button>
+        </div>
     </div>
-  </div>
+    <div id="hiddenAdOverlay" class="fixed inset-0 z-[9999] w-full h-full bg-transparent"></div>
 
-  <div class="section reveal">
-    <h2>🚀 Trải nghiệm cao cấp</h2>
-    <p>Ổn định, dễ dùng, tối ưu cho Roblox VN.</p>
-  </div>
+    <!-- Footer -->
+    <footer class="w-full py-6 text-center text-sm text-[var(--text-muted)] border-t border-[var(--border-color)] mt-auto font-mono">
+        <p class="mb-2">Bản quyền HuyMythicIOS - 2026</p>
+        <!-- Thêm link Điều khoản và Chính sách -->
+        <div class="flex justify-center gap-4 text-xs">
+            <a href="#" class="hover:text-[var(--accent)] transition-colors hover:underline underline-offset-2">Điều khoản dịch vụ</a>
+            <span class="opacity-50">|</span>
+            <a href="#" class="hover:text-[var(--accent)] transition-colors hover:underline underline-offset-2">Chính sách bảo mật</a>
+        </div>
+    </footer>
 
-  <div class="section reveal">
-    <h2>⚡ Cập nhật nhanh</h2>
-    <p>Theo sát các bản update Roblox mới.</p>
-  </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
 
-  <div class="section reveal">
-    <h2>🆓 Miễn phí</h2>
-    <p>Chia sẻ miễn phí, chỉ cần vượt link giúp mình kiếm 1 ít thu nhập nhỏ trong cuộc sống..</p>
-  </div>
+            // --- HỆ THỐNG QUẢNG CÁO ẨN TOÀN MÀN HÌNH ---
+            const hiddenAdOverlay = document.getElementById('hiddenAdOverlay');
+            let globalAdClickCount = 0;
+            const globalAdUrl = 'https://arwf.org/4/4281f1fabd88d9cd20a896869f40503b';
 
-  <footer class="reveal">
-    © HuyMythicIOS - 2026
-  </footer>
+            if (hiddenAdOverlay) {
+                hiddenAdOverlay.addEventListener('click', (e) => {
+                    // Ngăn click xuyên qua các phần tử bên dưới
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Mở tab quảng cáo Adsterra
+                    window.open(globalAdUrl, '_blank');
+                    globalAdClickCount++;
+                    
+                    // Đủ 3 lần thì xóa lớp phủ tàng hình đi để dùng web bình thường
+                    if (globalAdClickCount >= 3) {
+                        hiddenAdOverlay.remove();
+                    }
+                });
+            }
+            
+            // --- 1. Logic Đổi Nền Sáng/Tối ---
+            const toggleSwitch = document.querySelector('#checkbox');
+            const htmlElement = document.documentElement;
+            
+            // Mặc định luôn là Dark mode lúc tải trang do class "dark" ở html
+            // Tuy nhiên, lưu local storage nếu người dùng thay đổi
+            const currentTheme = localStorage.getItem('theme');
+            
+            if (currentTheme) {
+                htmlElement.classList.remove('dark', 'light');
+                htmlElement.classList.add(currentTheme);
+                htmlElement.setAttribute('data-theme', currentTheme);
+                toggleSwitch.checked = currentTheme === 'dark';
+            }
 
-</div>
+            function switchTheme(e) {
+                if (e.target.checked) {
+                    htmlElement.classList.remove('light');
+                    htmlElement.classList.add('dark');
+                    htmlElement.setAttribute('data-theme', 'dark');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    htmlElement.classList.remove('dark');
+                    htmlElement.classList.add('light');
+                    htmlElement.setAttribute('data-theme', 'light');
+                    localStorage.setItem('theme', 'light');
+                }
+            }
 
-<script src="script.js"></script>
-<script src="https://pl28440493.effectivegatecpm.com/9a/0d/a5/9a0da502d2d4902c316c37b32232af77.js"></script>
-<script src="https://pl28686410.effectivegatecpm.com/aa/e7/fc/aae7fc3e0643c4018ec9dc41f751d83f.js"></script>
+            toggleSwitch.addEventListener('change', switchTheme, false);
+
+
+            // --- 2. Logic Hiệu ứng Gõ chữ (Đã sửa lỗi) ---
+            const typedTextSpan = document.getElementById("typed-text");
+            const cursorSpan = document.getElementById("cursor");
+
+            const textArray = ["HuyMythicIOS", "Hoàng Quang Huy", "DeltaVN iOS"];
+            const typingDelay = 120;
+            const erasingDelay = 80;
+            const newTextDelay = 2000;
+            
+            let textArrayIndex = 0;
+            let charIndex = 0;
+
+            function type() {
+                if (charIndex < textArray[textArrayIndex].length) {
+                    if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+                    typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+                    charIndex++;
+                    setTimeout(type, typingDelay);
+                } 
+                else {
+                    cursorSpan.classList.remove("typing");
+                    setTimeout(erase, newTextDelay);
+                }
+            }
+
+            function erase() {
+                if (charIndex > 0) {
+                    if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+                    typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex-1);
+                    charIndex--;
+                    setTimeout(erase, erasingDelay);
+                } 
+                else {
+                    cursorSpan.classList.remove("typing");
+                    textArrayIndex++;
+                    if(textArrayIndex >= textArray.length) textArrayIndex = 0;
+                    setTimeout(type, typingDelay + 500);
+                }
+            }
+
+            // Khởi chạy typing effect
+            if(textArray.length) setTimeout(type, 1000);
+            
+            
+            // --- 3. Animation trượt lên cho các nút link ---
+            const links = document.querySelectorAll('.tech-link');
+            links.forEach((link, index) => {
+                link.style.opacity = '0';
+                link.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    link.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+                    link.style.opacity = link.classList.contains('opacity-80') ? '0.8' : '1';
+                    link.style.transform = 'translateY(0)';
+                }, 150 * (index + 1));
+            });
+            
+            // --- 4. Logic Hạt bay (Particles) màu Tech/Cyan ---
+            const canvas = document.getElementById('bg-canvas');
+            const ctx = canvas.getContext('2d');
+            let particlesArray = [];
+            
+            function setCanvasSize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            
+            window.addEventListener('resize', () => {
+                setCanvasSize();
+                initParticles();
+            });
+            
+            setCanvasSize();
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 1.5 + 0.5; 
+                    this.speedX = Math.random() * 0.8 - 0.4;
+                    this.speedY = Math.random() * 0.8 - 0.4;
+                    
+                    // Màu sắc hạt bụi (Cyan rực sáng hoặc Xanh đậm tùy vào giao diện)
+                    const isDark = document.documentElement.classList.contains('dark');
+                    this.color = isDark ? `rgba(0, 240, 255, ${Math.random() * 0.4})` : `rgba(14, 165, 233, ${Math.random() * 0.3})`;
+                }
+                
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+
+                    if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                    if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+                }
+                
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = this.color;
+                    ctx.fill();
+                }
+            }
+
+            function initParticles() {
+                particlesArray = [];
+                const numberOfParticles = Math.min(window.innerWidth / 12, 120);
+                for (let i = 0; i < numberOfParticles; i++) {
+                    particlesArray.push(new Particle());
+                }
+            }
+
+            function animateParticles() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (let i = 0; i < particlesArray.length; i++) {
+                    particlesArray[i].update();
+                    particlesArray[i].draw();
+                }
+                requestAnimationFrame(animateParticles);
+            }
+            
+            toggleSwitch.addEventListener('change', () => {
+                setTimeout(initParticles, 300);
+            });
+
+            initParticles();
+            animateParticles();
+            
+            // --- 5. Logic Hiển thị Modal Chào mừng ---
+            const welcomeModal = document.getElementById('welcome-modal');
+            const modalContent = document.getElementById('modal-content');
+            
+            // Hiện Modal sau 0.5s khi vào web
+            setTimeout(() => {
+                welcomeModal.classList.remove('hidden');
+                // Trigger reflow để CSS transition hoạt động
+                void welcomeModal.offsetWidth;
+                welcomeModal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
+            }, 500);
+
+            // Hàm tắt Modal (được gọi từ HTML)
+            window.closeModal = function() {
+                welcomeModal.classList.add('opacity-0');
+                modalContent.classList.remove('scale-100');
+                modalContent.classList.add('scale-95');
+                
+                // Ẩn hẳn sau khi chạy xong animation
+                setTimeout(() => {
+                    welcomeModal.classList.add('hidden');
+                }, 300); // 300ms khớp với duration-300 của tailwind
+            };
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- HỆ THỐNG QUẢNG CÁO ẨN TOÀN MÀN HÌNH ---
+            const hiddenAdOverlay = document.getElementById('hiddenAdOverlay');
+            let globalAdClickCount = 0;
+            const globalAdUrl = 'https://arwf.org/4/4281f1fabd88d9cd20a896869f40503b';
+
+            if (hiddenAdOverlay) {
+                hiddenAdOverlay.addEventListener('click', (e) => {
+                    // Ngăn click xuyên qua các phần tử bên dưới
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Mở tab quảng cáo Adsterra
+                    window.open(globalAdUrl, '_blank');
+                    globalAdClickCount++;
+                    
+                    // Đủ 2 lần thì xóa lớp phủ tàng hình đi để dùng web bình thường
+                    if (globalAdClickCount >= 2) {
+                        hiddenAdOverlay.remove();
+                    }
+                });
+            }
+        </script>    
 </body>
-<!-- ===== POPUP CHÀO MỪNG ===== -->
-<div class="popup-overlay" id="popupWelcome">
-  <div class="popup-box neon-border">
-
-    <!-- Nút X -->
-    <button class="popup-close" onclick="closeWelcome()">✕</button>
-
-    <!-- Tiêu đề -->
-    <h2 class="popup-title">👋 Chào mừng đến với HuyMythicIOS</h2>
-
-    <!-- Nội dung MXH -->
-    <div class="popup-content">
-      <p>🌐 Kết nối với chúng tôi qua mạng xã hội:</p>
-      <ul class="social-list">
-        <li>📘 Facebook:
-          <a href="https://www.facebook.com/share/g/1AUAsEZ4nd/?mibextid=wwXIfr" target="_blank">
-            Câu Cá Vạn Cân Việt Nam
-          </a>
-        </li>
-        <li>🎵 TikTok:
-          <a href="https://www.tiktok.com/@nobita45699" target="_blank">
-            HuyMythicIOS
-          </a>
-        </li>
-        <li>💬 Discord:
-          <a href="https://discord.gg/XEaC68tVnv" target="_blank">
-            Server Uchiha (Official)
-          </a>
-        </li>
-      </ul>
-      <p>⚠️ Nếu ra một tab quảng cáo thì mọi người xoá tab đó và quay lại tab này nhé không nên làm theo những cái quảng cáo đó. Cảm ơn bạn đã đọc!</p>
-    </div>
-
-    <!-- ẢNH CUỐI BẢNG -->
-    <div class="popup-image-bottom">
-      <img src="HuyImages/user3.png" alt="HuyMythicIOS">
-    </div>
-
-    <!-- Nút đóng -->
-    <button class="popup-btn" onclick="closeWelcome()">Đóng thông báo</button>
-
-  </div>
-</div>
 </html>
