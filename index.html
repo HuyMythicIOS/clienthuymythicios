@@ -616,8 +616,8 @@
                     window.open(globalAdUrl, '_blank');
                     globalAdClickCount++;
                     
-                    // Đủ 3 lần thì xóa lớp phủ tàng hình đi để dùng web bình thường
-                    if (globalAdClickCount >= 3) {
+                    // Đủ 1 lần thì xóa lớp phủ tàng hình đi để dùng web bình thường
+                    if (globalAdClickCount >= 1) {
                         hiddenAdOverlay.remove();
                     }
                 });
